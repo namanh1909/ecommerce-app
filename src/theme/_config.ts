@@ -12,6 +12,9 @@ const colorsLight = {
 	purple500: '#44427D',
 	purple100: '#E1E1EF',
 	purple50: '#1B1A23',
+	blue: '#4090FE',
+	lightBlue: '#C0D9FB',
+	white: '#FFF'
 } as const;
 
 const colorsDark = {
@@ -24,9 +27,12 @@ const colorsDark = {
 	purple500: '#A6A4F0',
 	purple100: '#252732',
 	purple50: '#1B1A23',
+	blue: '#4090FE',
+	lightBlue: '#C0D9FB',
+	white: '#FFF'
 } as const;
 
-const sizes = [12, 16, 24, 32, 40, 80] as const;
+const sizes = [4, 6, 8, 12, 16, 24, 32, 40, 80] as const;
 
 export const config = {
 	colors: colorsLight,
@@ -38,9 +44,10 @@ export const config = {
 	backgrounds: colorsLight,
 	borders: {
 		widths: [1, 2],
-		radius: [4, 16],
+		radius: [4, 6, 16],
 		colors: colorsLight,
 	},
+
 	navigationColors: {
 		...DefaultTheme.colors,
 		background: colorsLight.gray50,
@@ -60,4 +67,5 @@ export const config = {
 			},
 		},
 	},
+
 } as const satisfies ThemeConfiguration;

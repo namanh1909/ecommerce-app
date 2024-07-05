@@ -27,6 +27,22 @@ type MarginGutters = {
 	};
 };
 
+type Heights = `height_${ArrayValue<typeof config.gutters>}`;
+type Widths = `width_${ArrayValue<typeof config.gutters>}`;
+
+type HeightGutters = {
+	[key in Heights]: {
+		height: ToNumber<RemoveBeforeSeparator<key>>;
+	};
+};
+
+type WidthGutters = {
+	[key in Widths]: {
+		width: ToNumber<RemoveBeforeSeparator<key>>;
+	};
+};
+
+
 type Paddings =
 	| 'padding'
 	| 'paddingBottom'
@@ -57,4 +73,5 @@ type GapGutters = {
 export type Gutters = MarginGutters &
 	PaddingGutters &
 	GapGutters &
-	typeof staticGutterStyles;
+	HeightGutters & WidthGutters
+typeof staticGutterStyles;

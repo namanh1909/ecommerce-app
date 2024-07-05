@@ -28,7 +28,13 @@ export const generateFontSizes = () => {
 
 export const staticFontStyles = {
 	bold: {
-		fontWeight: 'bold',
+		fontFamily: 'AvenirNextLTPro-Bold',
+	},
+	regular: {
+		fontFamily: 'AvenirNextLTPro-Regular',
+	},
+	medium: {
+		fontFamily: 'AvenirNextLTPro-Bold',
 	},
 	uppercase: {
 		textTransform: 'uppercase',

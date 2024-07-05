@@ -51,6 +51,11 @@ export const generateGutters = (): Gutters => {
 			[`gap_${curr}`]: {
 				gap: curr,
 			},
+			[`height_${curr}`]: {
+				height_: curr,
+			}, [`width_${curr}`]: {
+				width_: curr,
+			},
 		});
 	}, {} as Gutters);
 };

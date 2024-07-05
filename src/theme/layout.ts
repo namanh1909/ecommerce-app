@@ -1,4 +1,5 @@
 import { ViewStyle } from 'react-native';
+import { config } from '@/theme/_config';
 
 export default {
 	col: {
