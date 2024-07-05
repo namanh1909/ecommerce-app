@@ -42,7 +42,6 @@ type WidthGutters = {
 	};
 };
 
-
 type Paddings =
 	| 'padding'
 	| 'paddingBottom'
@@ -73,5 +72,6 @@ type GapGutters = {
 export type Gutters = MarginGutters &
 	PaddingGutters &
 	GapGutters &
-	HeightGutters & WidthGutters
+	HeightGutters &
+	WidthGutters;
 typeof staticGutterStyles;

@@ -1,7 +1,7 @@
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from 'react-native';
 
-type SliderOnboard = {
-    soucre?: ImageSourcePropType | undefined;
-    title: string;
-    subTitle: string;
-}
+export type SliderOnboard = {
+	source?: ImageSourcePropType | undefined;
+	title: string;
+	subTitle: string;
+};

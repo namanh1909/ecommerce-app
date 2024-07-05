@@ -14,7 +14,7 @@ const colorsLight = {
 	purple50: '#1B1A23',
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
-	white: '#FFF'
+	white: '#FFF',
 } as const;
 
 const colorsDark = {
@@ -29,10 +29,10 @@ const colorsDark = {
 	purple50: '#1B1A23',
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
-	white: '#FFF'
+	white: '#FFF',
 } as const;
 
-const sizes = [4, 6, 8, 12, 16, 24, 32, 40, 80] as const;
+const sizes = [4, 6, 8, 12, 16, 24, 32, 40, 80, 120] as const;
 
 export const config = {
 	colors: colorsLight,
@@ -67,5 +67,4 @@ export const config = {
 			},
 		},
 	},
-
 } as const satisfies ThemeConfiguration;

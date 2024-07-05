@@ -2,7 +2,7 @@ import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import type { ComponentTheme } from '@/types/theme/theme';
 
 interface AllStyle
-	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> { }
+	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> {}
 
 export default ({ layout, backgrounds, fonts }: ComponentTheme) => {
 	return {
@@ -15,7 +15,7 @@ export default ({ layout, backgrounds, fonts }: ComponentTheme) => {
 			width: 70,
 			borderRadius: 35,
 		},
-		buttonHaflCircle: {
+		buttonHalfCircle: {
 			...layout.justifyCenter,
 			...layout.itemsCenter,
 			...backgrounds.purple100,
