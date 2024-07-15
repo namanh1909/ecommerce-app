@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export const staticValue = {
     DEFAULT: 1,
     TIME_IMAGE_LOAD: 500,
@@ -7,6 +9,7 @@ export const ERRORS = {
     default: 'common.error.unknown',
     network: 'common.error.network',
 };
+const { t } = useTranslation('auth');
 
 export const dataPicker = [
     'label1',
@@ -24,3 +27,6 @@ export const dataPicker = [
 export const dataDropdown = ['option 1 ', 'option 2', 'option 3', 'option 4'];
 
 export const genderDropDown = ['1', '2'];
+
+
+// Usage example

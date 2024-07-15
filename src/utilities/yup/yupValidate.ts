@@ -11,80 +11,73 @@ import {
     USERNAME_MIN_LENGTH,
 } from '../validate';
 import { useTranslation } from 'react-i18next';
-const { t } = useTranslation('error')
 
-const yupValidate = {
-    name: () =>
-        yup
-            .string()
-            .required(() => requireField('name'))
-            .trim(t('trimSpace'))
-            .strict(true)
-            .min(USERNAME_MIN_LENGTH, t('nameLength'))
-            .max(USERNAME_MAX_LENGTH, t('nameLength')),
+const yupValidate = () => {
+    const { t } = useTranslation('error');
 
-    username: () =>
-        yup
-            .string()
-            .required(() => requireField('username'))
-            .trim(t('trimSpace'))
-            .strict(true)
-            .min(USERNAME_MIN_LENGTH, t('nameLength'))
-            .max(USERNAME_MAX_LENGTH, t('nameLength')),
+    return {
+        name: () =>
+            yup
+                .string()
+                .required(() => requireField('name'))
+                .trim(t('trimSpace'))
+                .strict(true)
+                .min(USERNAME_MIN_LENGTH, t('nameLength'))
+                .max(USERNAME_MAX_LENGTH, t('nameLength')),
 
-    email: () =>
-        yup
-            .string()
-            .required(() => requireField('email'))
-            .email(t('emailInvalid'))
-            .matches(REGEX_EMAIL, t('emailInvalid')),
+        username: () =>
+            yup
+                .string()
+                .required(() => requireField('username'))
+                .trim(t('trimSpace'))
+                .strict(true)
+                .min(USERNAME_MIN_LENGTH, t('nameLength'))
+                .max(USERNAME_MAX_LENGTH, t('nameLength')),
 
-    phone: () =>
-        yup
-            .string()
-            .required(() => requireField('phone'))
-            .matches(REGEX_PHONE, t('phoneInvalid')),
+        email: () =>
+            yup
+                .string()
+                .required(() => requireField('email'))
+                .email(t('emailInvalid'))
+                .matches(REGEX_EMAIL, t('emailInvalid')),
 
-    gender: () =>
-        yup
-            .string()
-            .required(() => requireField('gender')),
-    // .matches(REGEX_PHONE, t('phoneInvalid')),
+        phone: () =>
+            yup
+                .string()
+                .required(() => requireField('phone'))
+                .matches(REGEX_PHONE, t('phoneInvalid')),
 
-    /**
-     * @param ref : the name of StyledInputForm want to compare
-     * @param isMatchCurrentPassword
-     * password() : input password
-     * password(ref) : input passwordConfirm, have to be the same with password
-     * password(ref, false) : input newPassword, have not to be the same with currentPassword
-     */
-    password: (ref?: string, isMatchCurrentPassword = true): any => {
-        if (ref) {
-            // NEW PASSWORD
-            if (!isMatchCurrentPassword) {
-                return yupValidate.password().not([yup.ref(ref), null], t('duplicatePassword'));
+        gender: () =>
+            yup
+                .string()
+                .required(() => requireField('gender')),
+
+        password: (ref?: string, isMatchCurrentPassword = true): any => {
+            if (ref) {
+                if (!isMatchCurrentPassword) {
+                    return yupValidate().password().not([yup.ref(ref), null], t('duplicatePassword'));
+                }
+
+                return yup
+                    .string()
+                    .required(() => requireField('passwordConfirm'))
+                    .oneOf([yup.ref(ref)], t('passwordNotMatch'));
             }
 
-            // CONFIRM PASSWORD
             return yup
                 .string()
-                .required(() => requireField('passwordConfirm'))
-                .oneOf([yup.ref(ref)], t('passwordNotMatch'));
-        }
-
-        return yup
-            .string()
-            .required(() => requireField('password'))
-            .trim(t('trimSpace'))
-            .strict(true)
-            .min(PASSWORD_MIN_LENGTH, t('passwordLength'))
-            .max(PASSWORD_MAX_LENGTH, t('passwordLength'))
-            .matches(REGEX_PASSWORD, t('validatePassword'));
-    },
-    birthday: () => yup.string().required(() => requireField('birthday')),
-    labelPicker: () => yup.string().required(() => requireField('labelPicker')),
-    policy: () => yup.string().required(() => requireField('policy')),
-    notRequired: () => yup.string().notRequired()
+                .required(() => requireField('password'))
+                .trim(t('trimSpace'))
+                .strict(true)
+                .min(PASSWORD_MIN_LENGTH, t('passwordLength'))
+                .max(PASSWORD_MAX_LENGTH, t('passwordLength'))
+                .matches(REGEX_PASSWORD, t('validatePassword'));
+        },
+        birthday: () => yup.string().required(() => requireField('birthday')),
+        labelPicker: () => yup.string().required(() => requireField('labelPicker')),
+        policy: () => yup.string().required(() => requireField('policy')),
+        notRequired: () => yup.string().notRequired()
+    };
 };
 
 export default yupValidate;

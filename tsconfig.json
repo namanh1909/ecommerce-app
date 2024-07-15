@@ -15,6 +15,6 @@
     "jest.setup.js",
     "jest.config.js",
     "babel.config.js",
-    "index.js"
+    "index.tsx"
   ],
 }
