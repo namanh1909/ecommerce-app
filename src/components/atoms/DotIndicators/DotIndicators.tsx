@@ -1,4 +1,4 @@
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import React from "react";
 import Animated, {
   Extrapolation,
@@ -7,6 +7,7 @@ import Animated, {
   interpolateColor,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import { useTheme } from "@/theme";
 
 type Props = {
   index: number;
@@ -15,6 +16,8 @@ type Props = {
 
 function DotIndicators({ index, x }: Props) {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const { layout, gutters, borders } = useTheme();
+
   const animatedDotStyle = useAnimatedStyle(() => {
     const widthAnimation = interpolate(
       x.value,
@@ -58,17 +61,15 @@ function DotIndicators({ index, x }: Props) {
   return (
     <Animated.View
       testID="dot-indicator"
-      style={[styles.dots, animatedDotStyle, animatedColor]}
+      style={[
+        gutters.marginHorizontal_4,
+        animatedDotStyle,
+        animatedColor,
+        borders.rounded_4,
+        { height: 8 },
+      ]}
     />
   );
 }
 
 export default DotIndicators;
-
-const styles = StyleSheet.create({
-  dots: {
-    height: 10,
-    marginHorizontal: 4,
-    borderRadius: 5,
-  },
-});

@@ -82,7 +82,7 @@ const messages: any = {
 
 const showRequestPermission = (type: string) => {
     Alert.alert(
-        Config.APP_NAME,
+        Config.APP_NAME as string,
         messages[type],
         [
             {
@@ -106,5 +106,5 @@ const messagesUnavailable: any = {
 };
 
 const showPermissionUnavailable = (type: string) => {
-    Alert.alert(Config.APP_NAME, messagesUnavailable[type]);
+    Alert.alert(Config.APP_NAME as string, messagesUnavailable[type]);
 };

@@ -1,24 +1,15 @@
-import {
-  FlatList,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  useWindowDimensions,
-} from "react-native";
+import { FlatList, TouchableWithoutFeedback } from "react-native";
 import React from "react";
 import Animated, {
   AnimatedRef,
   SharedValue,
-  interpolateColor,
   useAnimatedStyle,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "@/types/navigation";
-import layout from "@/theme/layout";
 import { useTheme } from "@/theme";
 import NextStepButton from "../NextStepButton/NextStepButton";
+import { AUTHENTICATE_ROUTE } from "@/navigators/navigation/config/routes";
 
 type Props = {
   dataLength: number;
@@ -96,7 +87,7 @@ function OnboardingButton({
         index: flatListIndex.value + 1,
       });
     } else {
-      navigation.navigate("Home");
+      navigation.navigate(AUTHENTICATE_ROUTE.LANDING);
     }
   };
 

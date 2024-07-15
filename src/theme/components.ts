@@ -2,9 +2,9 @@ import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import type { ComponentTheme } from '@/types/theme/theme';
 
 interface AllStyle
-	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> {}
+	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> { }
 
-export default ({ layout, backgrounds, fonts }: ComponentTheme) => {
+export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 	return {
 		buttonCircle: {
 			...layout.justifyCenter,
@@ -29,5 +29,24 @@ export default ({ layout, backgrounds, fonts }: ComponentTheme) => {
 			height: 250,
 			width: 250,
 		},
+		btn: {
+			...layout.justifyCenter,
+			...layout.itemsCenter,
+			...backgrounds.purple100,
+			...fonts.gray400,
+			height: 70,
+			width: 70,
+			borderRadius: 16,
+		},
+		textGray: {
+			...fonts.gray200,
+			...fonts.medium,
+		},
+		textBtn: {
+			...fonts.size_16,
+			...fonts.blue,
+			...fonts.medium,
+			textTransform: 'uppercase'
+		}
 	} as const satisfies AllStyle;
 };

@@ -8,23 +8,20 @@ import Animated, {
 import Slide from "@/components/molecules/Slide/Slide";
 import Pagination from "@/components/molecules/Pagination/Pagination";
 import { useTheme } from "@/theme";
-import { OnboardingButton } from "@/components/atoms";
-import { SliderOnboard } from "@/@types/oboarding.type";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "@/types/navigation";
+import { OnboardingButton } from "@/components/atoms";
 
 type Props = {
   data: any;
-  navigation: { navigate: (route: string) => void }; // Add this line
 };
 
 function OnboardingScreen(props: Props) {
-  const { data, navigation } = props;
+  const { data } = props;
   const flatListRef = useAnimatedRef<FlatList>();
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue(0);
   const { layout, gutters, fonts, colors } = useTheme();
+  const navigation = useNavigation();
 
   const onViewableItemsChanged = ({
     viewableItems,

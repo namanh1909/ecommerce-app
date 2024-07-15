@@ -1,0 +1,10 @@
+{
+    "trimSpace": "No leading or trailing spaces allowed.",
+    "nameLength": "Name must be between 3 and 30 characters.",
+    "emailInvalid": "Please enter a valid email address.",
+    "phoneInvalid": "Please enter a valid phone number.",
+    "duplicatePassword": "New password cannot be the same as the current password.",
+    "passwordNotMatch": "Passwords do not match.",
+    "passwordLength": "Password must be between 6 and 12 characters.",
+    "validatePassword": "Password must meet the required criteria."
+}

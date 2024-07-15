@@ -8,11 +8,10 @@ import { OnboardingData } from "@/utils/const";
 describe("OnboardingScreen component should render correctly", () => {
   const storage = new MMKV();
   const mockNavigate = jest.fn();
-  const navigation = { navigate: mockNavigate };
   test("should render with empty data", () => {
     const component = (
       <ThemeProvider storage={storage}>
-        <OnboardingScreen navigation={navigation} data={OnboardingData} />
+        <OnboardingScreen data={OnboardingData} />
       </ThemeProvider>
     );
 
@@ -24,7 +23,7 @@ describe("OnboardingScreen component should render correctly", () => {
   test("should render with non-empty data", () => {
     const component = (
       <ThemeProvider storage={storage}>
-        <OnboardingScreen navigation={navigation} data={[]} />
+        <OnboardingScreen data={[]} />
       </ThemeProvider>
     );
 

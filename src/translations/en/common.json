@@ -1,6 +1,18 @@
 {
   "appName": {
-    "full": "React Native MyApp",
-    "initials": "RNB"
+    "full": "EventApp",
+    "initials": "Nam dev"
+  },
+  "error": {
+    "network": "Error network"
+  },
+  "permissions": {
+    "camera": "Camera access is required to take photos.",
+    "photo": "Photo library access is required to select photos.",
+    "audio": "Microphone access is required to record audio."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }

@@ -48,6 +48,9 @@ export default {
 	flex_1: {
 		flex: 1,
 	},
+	flex_2: {
+		flex: 2,
+	},
 	fullWidth: {
 		width: '100%',
 	},

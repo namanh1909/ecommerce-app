@@ -34,7 +34,7 @@ export const staticFontStyles = {
 		fontFamily: 'AvenirNextLTPro-Regular',
 	},
 	medium: {
-		fontFamily: 'AvenirNextLTPro-Bold',
+		fontFamily: 'AvenirNextLTPro-Medium',
 	},
 	uppercase: {
 		textTransform: 'uppercase',
@@ -44,5 +44,11 @@ export const staticFontStyles = {
 	},
 	alignCenter: {
 		textAlign: 'center',
+	},
+	alignRight: {
+		textAlign: 'right'
+	},
+	alignLeft: {
+		textAlign: 'left'
 	},
 } as const satisfies Record<string, TextStyle>;

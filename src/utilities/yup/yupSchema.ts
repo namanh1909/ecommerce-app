@@ -1,11 +1,18 @@
 import * as yup from 'yup';
 import yupValidate from './yupValidate';
 
-export const registerSchema = yup.object().shape({
-    name: yupValidate.name(),
+export const registerSchema =
+    yup.object().shape({
+        name: yupValidate.name(),
+        email: yupValidate.email(),
+        password: yupValidate.password(),
+        phone: yupValidate.phone()
+    });
+
+
+export const loginSchema = yup.object().shape({
     email: yupValidate.email(),
     password: yupValidate.password(),
-    confirmPassword: yupValidate.password('password'),
 });
 
 export const profileSchema = yup.object().shape({

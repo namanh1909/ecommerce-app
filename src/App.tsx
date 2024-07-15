@@ -1,24 +1,23 @@
-import 'react-native-gesture-handler';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MMKV } from 'react-native-mmkv';
+import "react-native-gesture-handler";
+import { MMKV } from "react-native-mmkv";
 
-import { ThemeProvider } from '@/theme';
+import { ThemeProvider } from "@/theme";
 
-import ApplicationNavigator from './navigators/Application';
-import './translations';
-
-export const queryClient = new QueryClient();
+import ApplicationNavigator from "./navigators/Application";
+import "./translations";
+import { Provider } from "react-redux";
+import { store } from "./core/adapters/app-redux/store";
 
 export const storage = new MMKV();
 
 function App() {
-	return (
-		<QueryClientProvider client={queryClient}>
-			<ThemeProvider storage={storage}>
-				<ApplicationNavigator />
-			</ThemeProvider>
-		</QueryClientProvider>
-	);
+  return (
+    <Provider store={store}>
+      <ThemeProvider storage={storage}>
+        <ApplicationNavigator />
+      </ThemeProvider>
+    </Provider>
+  );
 }
 
 export default App;

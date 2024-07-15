@@ -1,0 +1,9 @@
+{
+  "appName": {
+    "full": "MyApp React Native",
+    "initials": "RNB"
+  },
+  "error": {
+    "network": "Error network"
+  }
+}

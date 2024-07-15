@@ -1,32 +1,42 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useContext } from "react";
 
-import { Example, SplashScreen, Startup } from '@/presenters/index';
-import { useTheme } from '@/theme';
+import { Example, SplashScreen, Startup } from "@/presenters/index";
+import { useTheme } from "@/theme";
+import Onboard from "@/presenters/auth/Onboard/OnboardScreen";
+import HomeScreen from "@/presenters/home/HomeScreen";
+import { AuthProvider, AuthContext } from "@/contexts/AuthContext";
+import AuthStack from "./navigation/scene/AuthScenes";
+import AppStack from "./navigation/scene/TabScenes";
+import { navigationRef } from "./navigation/NavigationService";
 
-import type { RootStackParamList } from '@/types/navigation';
-import Onboard from '@/presenters/auth/Onboard/Onboard';
-import HomeScreen from '@/presenters/home/HomeScreen';
-
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
 function ApplicationNavigator() {
-	const { variant, navigationTheme } = useTheme();
+  const { variant, navigationTheme } = useTheme();
+  const isAuthenticated = false;
 
-	return (
-		<SafeAreaProvider>
-			<NavigationContainer theme={navigationTheme}>
-				<Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="Onboard" component={Onboard} />
-					<Stack.Screen name="Home" component={HomeScreen} />
-					<Stack.Screen name="Example" component={Example} />
-					<Stack.Screen name="Startup" component={Startup} />
-					<Stack.Screen name="Splash" component={SplashScreen} />
-				</Stack.Navigator>
-			</NavigationContainer>
-		</SafeAreaProvider>
-	);
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer theme={navigationTheme} ref={navigationRef}>
+        <Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
+          {isAuthenticated ? (
+            <Stack.Screen name="AppStack" component={AppStack} />
+          ) : (
+            <Stack.Screen name="Unauthen" component={AuthStack} />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
 }
 
-export default ApplicationNavigator;
+export default function App() {
+  return (
+    <AuthProvider>
+      <ApplicationNavigator />
+    </AuthProvider>
+  );
+}

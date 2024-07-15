@@ -15,6 +15,9 @@ const colorsLight = {
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
 	white: '#FFF',
+	facebook: "#3B5998",
+	twitter: "#00ACED",
+	google: "#DB4437"
 } as const;
 
 const colorsDark = {
@@ -30,9 +33,12 @@ const colorsDark = {
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
 	white: '#FFF',
+	facebook: "#3B5998",
+	twitter: "#00ACED",
+	google: "#DB4437"
 } as const;
 
-const sizes = [4, 6, 8, 12, 16, 24, 32, 40, 80, 120] as const;
+const sizes = [0, 4, 6, 8, 12, 16, 24, 32, 40, 80, 120] as const;
 
 export const config = {
 	colors: colorsLight,
