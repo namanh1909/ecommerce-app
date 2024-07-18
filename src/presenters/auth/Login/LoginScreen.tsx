@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container, SafeScreen } from "@/components/template";
 import { Header } from "@/components/molecules";
 import StyledInputForm from "@/components/atoms/InputForm/InputForm";
 import { useTheme } from "@/theme";
-import { Button, Text } from "@/components/atoms";
-import { FormProvider, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { LayoutAnimation, TouchableOpacity, View } from "react-native";
-import { registerSchema } from "@/utilities/yup/yupSchema";
-import { DEFAULT_FORM_LOGIN } from "@/utilities/yup/defaultForm";
-import { AuthSelectors } from "@/core/adapters/app-redux/slices/authSlice";
+import { Button, OverlayLoading, Text } from "@/components/atoms";
+import { FormProvider } from "react-hook-form";
+import { TouchableOpacity, View } from "react-native";
 import { useLoginScreen } from "@/hooks";
 
 const LoginScreen = () => {
@@ -29,6 +24,7 @@ const LoginScreen = () => {
 
   return (
     <SafeScreen>
+      <OverlayLoading visible={isProcessing} />
       <Header title={featureText} />
       <Container isWapper={false}>
         <View style={[layout.fullWidth, layout.flex_1]}>

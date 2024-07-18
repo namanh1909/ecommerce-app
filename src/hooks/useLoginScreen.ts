@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LayoutAnimation } from "react-native";
 import { useTranslation } from "react-i18next";
 import { registerSchema } from "@/utilities/yup/yupSchema";
 import { DEFAULT_FORM_LOGIN } from "@/utilities/yup/defaultForm";
-import { AuthSelectors } from "@/core/adapters/app-redux/slices/authSlice";
+import { AuthSelectors, authActions } from "@/core/adapters/app-redux/slices/authSlice";
+import { useAppDispatch } from "@/core/adapters/app-redux/hooks";
+import { useSelector } from "react-redux";
 
 const useLoginScreen = () => {
     const [isSignInState, setisSignInState] = useState<boolean>(true);
     const { t } = useTranslation("auth");
-    const { isProcessing } = AuthSelectors;
+    const isProcessing = useSelector(AuthSelectors.isProcessing);
+    const dispatch = useAppDispatch();
     const form = useForm({
         mode: "onChange",
         defaultValues: DEFAULT_FORM_LOGIN,
@@ -49,7 +52,7 @@ const useLoginScreen = () => {
     };
 
     const onSubmit = handleSubmit((data) => {
-        console.log(data);
+        dispatch(authActions.loginRequest(data));
     });
 
     return {

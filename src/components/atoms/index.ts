@@ -7,3 +7,4 @@ export { default as OnboardingButton } from './OnboardingButton/OnboardingButton
 export { default as Button } from './Button/Button';
 export { default as SocialMediasButton } from './SocialMediasButton/SocialMediasButton';
 export { default as Text } from './Text/Text';
+export { default as OverlayLoading } from './OverlayLoading/OverlayLoading';

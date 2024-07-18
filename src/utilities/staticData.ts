@@ -6,8 +6,8 @@ export const staticValue = {
 };
 
 export const ERRORS = {
-    default: 'common.error.unknown',
-    network: 'common.error.network',
+    default: 'Error network',
+    network: 'Error network',
 };
 const { t } = useTranslation('auth');
 

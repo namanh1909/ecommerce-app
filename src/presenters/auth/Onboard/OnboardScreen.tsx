@@ -4,6 +4,8 @@ import { SafeScreen } from "@/components/template";
 import { Slider } from "@/components/organisms";
 
 function OnboardingScreen() {
+  const loading: boolean = true;
+
   return (
     <SafeScreen>
       <Slider data={OnboardingData} />

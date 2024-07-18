@@ -14,16 +14,16 @@ const AuthStack = () => (
   <Host>
     <UnauthenStack.Navigator screenOptions={navigationConfigs}>
       <UnauthenStack.Screen
-        name={AUTHENTICATE_ROUTE.LOGIN}
-        component={LoginScreen}
-      />
-      <UnauthenStack.Screen
         name={AUTHENTICATE_ROUTE.ONBOARD}
         component={OnboardingScreen}
       />
       <UnauthenStack.Screen
         name={AUTHENTICATE_ROUTE.LANDING}
         component={LadingScreen}
+      />
+      <UnauthenStack.Screen
+        name={AUTHENTICATE_ROUTE.LOGIN}
+        component={LoginScreen}
       />
     </UnauthenStack.Navigator>
   </Host>

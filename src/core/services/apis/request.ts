@@ -1,5 +1,5 @@
 import { apiLogger, logger } from '@/utilities/logger';
-import { ERRORS } from '@/utilities/staticData';
+// import { ERRORS } from '@/utilities/staticData';
 import axios, { AxiosRequestConfig } from 'axios';
 import i18next from '@/translations';
 // import Config from 'react-native-config';
@@ -131,7 +131,7 @@ class RequestService {
                         this.isRefreshing = false;
                     }
                 }
-                error.message = errorMessage || ERRORS.default;
+                error.message = errorMessage
                 error.keyMessage = errorKey || '';
                 return this.rejectError(error.message, validNetwork);
             },

@@ -24,7 +24,7 @@ export class AuthApiService {
             });
             return res;
         } catch (ex) {
-            throw ex;
+            console.log('error')
         }
     }
     async signUp(credential: Credential) {

@@ -11,8 +11,7 @@ interface AuthState {
     errors: any | null;
     loggedIn: boolean;
     isProcessing: boolean;
-    resellers: any[];
-    havePincode: boolean;
+    refreshToken: string | null;
 }
 
 type Reducer<A extends Action<any> = AnyAction> = CaseReducer<AuthState, A>;
@@ -23,18 +22,18 @@ const initialState: AuthState = {
     errors: null,
     loggedIn: false,
     isProcessing: false,
-    resellers: [],
-    havePincode: false,
+    refreshToken: null,
 };
 
 const loginRequest: Reducer<PayloadAction<any>> = (state, { payload }: any) => {
     state.isProcessing = true;
 };
 
-const loginSuccess: Reducer<PayloadAction<{ token: string; user: any }>> = (state, { payload }) => {
+const loginSuccess: Reducer<PayloadAction<{ token: string; user: any; refreshToken: string }>> = (state, { payload }) => {
     state.isProcessing = false;
     state.token = payload.token;
     state.user = payload.user;
+    state.refreshToken = payload.refreshToken;
     state.loggedIn = true;
     state.errors = null;
 };
@@ -52,14 +51,6 @@ const logout: Reducer = (state) => {
     state.isProcessing = false;
 };
 
-const setResellers: Reducer<PayloadAction<any[]>> = (state, { payload }) => {
-    state.resellers = payload;
-};
-
-const setPincode: Reducer<PayloadAction<boolean>> = (state, { payload }) => {
-    state.havePincode = payload;
-};
-
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -68,8 +59,6 @@ const authSlice = createSlice({
         loginSuccess,
         loginFailure,
         logout,
-        setResellers,
-        setPincode,
     },
 });
 
