@@ -54,7 +54,7 @@ export const config = {
 	backgrounds: colorsLight,
 	borders: {
 		widths: [1, 2],
-		radius: [4, 6, 16, 18],
+		radius: [4, 6, 10, 16, 18],
 		colors: colorsLight,
 	},
 

@@ -26,7 +26,7 @@ const LoginScreen = () => {
     <SafeScreen>
       <OverlayLoading visible={isProcessing} />
       <Header title={featureText} />
-      <Container isWapper={false}>
+      <Container>
         <View style={[layout.fullWidth, layout.flex_1]}>
           <FormProvider {...form}>
             {!isSignInState && (
@@ -52,6 +52,7 @@ const LoginScreen = () => {
               label={t("label.password")}
               name="password"
               customPlaceHolder={t("placeholder.password")}
+              secureTextEntry
             />
             <Text
               i18nKey={t("label.forgotPassword")}

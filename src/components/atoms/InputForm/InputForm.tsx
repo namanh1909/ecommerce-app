@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import Input, { StyledInputProps } from "@/components/atoms/Input/Input";
 import layout from "@/theme/layout";
+import { useTheme } from "@/theme";
 
 type TName = FieldPath<FieldValues>;
 
@@ -39,6 +40,7 @@ interface FormInputProps extends StyledInputProps {
 
 const StyledInputForm = forwardRef((props: FormInputProps, ref: any) => {
   const { t } = useTranslation();
+  const { layout, borders } = useTheme();
   const {
     name,
     rules,
@@ -74,6 +76,19 @@ const StyledInputForm = forwardRef((props: FormInputProps, ref: any) => {
     setIsPasswordVisible((prev) => !prev);
   };
 
+  const RenderRight = () => {
+    return (
+      <>
+        {props?.secureTextEntry &&
+          (name.includes("password") || name.includes("confirmPassword")) && (
+            <TouchableOpacity onPress={togglePasswordVisibility}>
+              {isPasswordVisible ? <Text>Show</Text> : <Text>Hide</Text>}
+            </TouchableOpacity>
+          )}
+      </>
+    );
+  };
+
   const renderBaseInput = ({
     field: { onChange, value },
     fieldState: { error },
@@ -83,16 +98,17 @@ const StyledInputForm = forwardRef((props: FormInputProps, ref: any) => {
         <View
           style={[
             {
-              flexDirection: "row",
-              // backgroundColor: Themes.COLORS.secondary,
-              borderRadius: 10,
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingRight: 10,
+              // paddingRight: 10,
             },
           ]}
         >
           <InputComponent
+            wrapInputStyle={[
+              layout.row,
+              borders.rounded_10,
+              layout.itemsCenter,
+              layout.justifyCenter,
+            ]}
             ref={ref}
             value={value}
             autoFocus={false}
@@ -101,21 +117,9 @@ const StyledInputForm = forwardRef((props: FormInputProps, ref: any) => {
                 onChangeInput(text, onChange),
             }}
             {...customInputProps}
-            secureTextEntry={
-              props?.secureTextEntry &&
-              (name.includes("password") || name.includes("confirmPassword")) &&
-              isPasswordVisible
-            }
+            secureTextEntry={props?.secureTextEntry && isPasswordVisible}
+            renderRight={props?.secureTextEntry && RenderRight}
           />
-          {props?.secureTextEntry &&
-            (name.includes("password") || name.includes("confirmPassword")) && (
-              <TouchableOpacity onPress={togglePasswordVisibility}>
-                {/* {isPasswordVisible ? <EyeOpenIcon /> : <EyeCloseIcon />} */}
-              </TouchableOpacity>
-            )}
-          {/* {name.includes("birthday") && (
-            <StyledIcon size={20} source={Images.icons.calendar} />
-          )} */}
         </View>
         {!!error && <Text style={styles.errorMessage}>{error?.message}</Text>}
       </>

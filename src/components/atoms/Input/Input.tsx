@@ -109,9 +109,11 @@ const StyledInput = (props: StyledInputProps, ref: any) => {
           blurOnSubmit={!!customReturnKeyType}
           {...otherProps}
         />
-        {/* {!!renderRight && (
-          <View style={styles.rightView}>{renderRight?.()}</View>
-        )} */}
+        {renderRight && (
+          <View style={[layout.absolute, { backgroundColor: "red", right: 5 }]}>
+            {renderRight()}
+          </View>
+        )}
       </WrapInputComponent>
     </View>
   );

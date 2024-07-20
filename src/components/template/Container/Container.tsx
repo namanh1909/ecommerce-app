@@ -6,14 +6,9 @@ import { useTheme } from "@/theme";
 
 type ContainerProps = PropsWithChildren & {
   containerStyle?: ViewStyle;
-  isWapper?: boolean;
 };
 
-function Container({
-  children,
-  containerStyle,
-  isWapper = true,
-}: ContainerProps) {
+function Container({ children, containerStyle }: ContainerProps) {
   const { layout, variant, navigationTheme } = useTheme();
   const insets = useSafeAreaInsets();
 
@@ -23,10 +18,8 @@ function Container({
         layout.flex_1,
         {
           backgroundColor: navigationTheme.colors.background,
-          paddingTop: isWapper ? insets.top : 0,
-          paddingBottom: isWapper ? insets.bottom : 0,
-          paddingLeft: 10,
-          paddingRight: 10,
+          padding: 10,
+          paddingBottom: 10,
         },
         containerStyle,
       ]}

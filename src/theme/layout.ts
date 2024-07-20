@@ -76,6 +76,9 @@ export default {
 	right0: {
 		right: 0,
 	},
+	right10: {
+		right: 10
+	},
 	z1: {
 		zIndex: 1,
 	},
