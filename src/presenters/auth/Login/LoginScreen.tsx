@@ -7,6 +7,8 @@ import { Button, OverlayLoading, Text } from '@/components/atoms';
 import { FormProvider } from 'react-hook-form';
 import { TouchableOpacity, View } from 'react-native';
 import { useAuth } from '@/hooks';
+import { AccessToken, LoginButton, LoginManager, Settings } from "react-native-fbsdk-next";
+
 
 function LoginScreen() {
 	const {
@@ -24,8 +26,9 @@ function LoginScreen() {
 
 	return (
 		<SafeScreen>
-			<OverlayLoading visible={isProcessing} />
+			{/* <OverlayLoading visible={isProcessing} /> */}
 			<Header title={featureText} />
+		
 			<Container>
 				<FormProvider {...form}>
 					{!isSignInState && (
@@ -79,6 +82,7 @@ function LoginScreen() {
 						</TouchableOpacity>
 					</View>
 				</View>
+				
 			</Container>
 		</SafeScreen>
 	);

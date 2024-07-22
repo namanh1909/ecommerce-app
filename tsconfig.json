@@ -17,4 +17,5 @@
     "babel.config.js",
     "index.tsx"
   ],
+  "moduleResolution":"node",
 }

@@ -14,8 +14,8 @@ function SafeScreen({ children }: PropsWithChildren) {
 				{
 					backgroundColor: navigationTheme.colors.background,
 					// Paddings to handle safe area
-					paddingTop: insets.top,
-					paddingBottom: insets.bottom,
+					paddingTop: insets.top ?? 10,
+					paddingBottom: insets.bottom ?? 10,
 					paddingLeft: insets.left,
 					paddingRight: insets.right,
 				},

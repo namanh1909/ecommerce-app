@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/theme';
 import { navigate } from '@/navigators/navigation/NavigationService';
 import { AUTHENTICATE_ROUTE } from '@/navigators/navigation/config/routes';
+import { AccessToken, LoginButton } from 'react-native-fbsdk-next';
 
 function LadingScreen() {
 	const { t } = useTranslation(['auth']);
@@ -19,6 +20,25 @@ function LadingScreen() {
 
 	return (
 		<SafeScreen>
+				<View>
+				<LoginButton
+					onLoginFinished={
+						(error, result) => {
+						if (error) {
+							console.log("login has error: " + result);
+						} else if (result.isCancelled) {
+							console.log("login is cancelled.");
+						} else {
+							AccessToken.getCurrentAccessToken().then(
+							(data) => {
+								console.log(data)
+							}
+							)
+						}
+						}
+					}
+					onLogoutFinished={() => console.log("logout.")}/>
+			</View>
 			<Container
 				containerStyle={StyleSheet.flatten([
 					layout.itemsCenter,

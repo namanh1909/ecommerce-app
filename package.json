@@ -64,6 +64,7 @@
     "react-native": "0.74.1",
     "react-native-config": "^1.5.2",
     "react-native-device-info": "^11.1.0",
+    "react-native-fbsdk-next": "^13.0.0",
     "react-native-gesture-handler": "^2.17.1",
     "react-native-mmkv": "^2.12.2",
     "react-native-permissions": "^4.1.5",

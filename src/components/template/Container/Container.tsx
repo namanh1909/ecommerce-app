@@ -19,6 +19,7 @@ function Container({ children, containerStyle }: ContainerProps) {
 					backgroundColor: navigationTheme.colors.background,
 					paddingLeft: 10,
 					paddingRight: 10,
+					paddingBottom: 10,
 				},
 				containerStyle,
 			]}

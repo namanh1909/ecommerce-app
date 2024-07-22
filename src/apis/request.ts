@@ -6,6 +6,9 @@ import i18next from '@/translations';
 import NetInfo from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import Config from 'react-native-config';
+import helper from '@/utilities/helper';
+import { AuthSelectors } from '@/core/adapters/app-redux/slices/authSlice';
+import { Alert, ToastAndroid } from 'react-native';
 // import { ERRORS } from 'utilities/staticData';
 // import i18next from 'utilities/i18next';
 
@@ -44,8 +47,8 @@ class RequestService {
 	private initializeRequestInterceptor() {
 		this.request.interceptors.request.use(
 			async (config: any) => {
-				// Do something before API is sent
-				// const token = TokenProvider.getToken();
+			//	Do something before API is sent
+				// const token = AuthSelectors.getToken;
 				// if (token) {
 				//     config.headers.Authorization = `Bearer ${token}`;
 				// }
@@ -53,6 +56,7 @@ class RequestService {
 			},
 			(error: any) => {
 				// Do something with API error
+				console.log('error skip', error)
 				apiLogger(
 					`%c FAILED ${error.response.method?.toUpperCase()} from ${
 						error.response.config.url
