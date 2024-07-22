@@ -1,5 +1,4 @@
-export { default as Brand } from './Brand/Brand';
-export { default as Pagination } from './Pagination/Pagination';
-export { default as Slide } from './Slide/Slide';
-export { default as Header } from './Header/Header';
-
+export {  Brand } from './Brand';
+export {  Pagination } from './Pagination';
+export {  Slide } from './Slide';
+export {  Header } from './Header';

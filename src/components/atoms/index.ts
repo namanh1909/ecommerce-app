@@ -1,10 +1,10 @@
-export * from './Icons'
-export { default as ImageVariant } from './ImageVariant/ImageVariant';
-export { default as DotIndicators } from './DotIndicators/DotIndicators';
-export { default as ImageBackgroundWrapper } from './ImageBackground/ImageBackgroundWrapper';
-export { default as NextStepButton } from './NextStepButton/NextStepButton';
-export { default as OnboardingButton } from './OnboardingButton/OnboardingButton';
-export { default as Button } from './Button/Button';
-export { default as SocialMediasButton } from './SocialMediasButton/SocialMediasButton';
-export { default as Text } from './Text/Text';
-export { default as OverlayLoading } from './OverlayLoading/OverlayLoading';
+export * from './Icons';
+export { ImageVariant } from './ImageVariant';
+export { DotIndicators } from './DotIndicators';
+export { ImageBackgroundWrapper } from './ImageBackground';
+export { NextStepButton } from './NextStepButton';
+export { OnboardingButton } from './OnboardingButton';
+export { Button } from './Button';
+export { SocialMediasButton } from './SocialMediasButton';
+export { Text } from './Text';
+export { OverlayLoading } from './OverlayLoading';

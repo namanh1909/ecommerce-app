@@ -6,8 +6,8 @@ import * as fr from './vi';
 
 type TupleUnion<U extends string, R extends unknown[] = []> = {
 	[S in U]: Exclude<U, S> extends never
-	? [...R, S]
-	: TupleUnion<Exclude<U, S>, [...R, S]>;
+		? [...R, S]
+		: TupleUnion<Exclude<U, S>, [...R, S]>;
 }[U];
 
 const ns = Object.keys(en) as TupleUnion<keyof typeof en>;

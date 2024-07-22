@@ -2,7 +2,7 @@ import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import type { ComponentTheme } from '@/types/theme/theme';
 
 interface AllStyle
-	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> { }
+	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> {}
 
 export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 	return {
@@ -46,7 +46,7 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 			...fonts.size_16,
 			...fonts.blue,
 			...fonts.medium,
-			textTransform: 'uppercase'
-		}
+			textTransform: 'uppercase',
+		},
 	} as const satisfies AllStyle;
 };

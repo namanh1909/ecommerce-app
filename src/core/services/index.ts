@@ -1,5 +1,3 @@
-import { AuthenServices } from "./authen";
+import { AuthenServices } from './authen';
 
-export {
-    AuthenServices
-}
+export { AuthenServices };

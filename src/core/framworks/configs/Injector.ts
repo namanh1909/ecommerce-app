@@ -6,6 +6,7 @@ type Constructor<T> = new (...args: any[]) => T;
 
 class Injector {
 	factories: { [key: string]: Factory } = {};
+
 	singletons: { [key: string]: any } = {};
 
 	static getInstance(): Injector {
@@ -35,7 +36,10 @@ class Injector {
 		return new (MiddlemanCTor as any)() as T;
 	}
 
-	resolveDependencies<T>(CTor: Constructor<T>, params?: { [key: string]: any }): any[] {
+	resolveDependencies<T>(
+		CTor: Constructor<T>,
+		params?: { [key: string]: any },
+	): any[] {
 		params = params || {};
 		const args = this.getArguments(CTor);
 		const dependencies: any[] = [];

@@ -1,33 +1,31 @@
-import { StatusBar, View, ViewStyle } from "react-native";
-import type { PropsWithChildren } from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {  View, ViewStyle } from 'react-native';
+import type { PropsWithChildren } from 'react';
 
-import { useTheme } from "@/theme";
-import { isIos } from "@/utilities/helper";
+import { useTheme } from '@/theme';
 
 type ContainerProps = PropsWithChildren & {
-  containerStyle?: ViewStyle;
+	containerStyle?: ViewStyle;
 };
 
 function Container({ children, containerStyle }: ContainerProps) {
-  const { layout, variant, navigationTheme } = useTheme();
-  const insets = useSafeAreaInsets();
+	const { layout, navigationTheme } = useTheme();
 
-  return (
-    <View
-      style={[
-        layout.flex_1,
-        {
-          backgroundColor: navigationTheme.colors.background,
-          paddingLeft: 10,
-          paddingRight: 10,
-        },
-        containerStyle,
-      ]}
-    >
-      {children}
-    </View>
-  );
+	return (
+		<View
+			testID='container-id'
+			style={[
+				layout.flex_1,
+				{
+					backgroundColor: navigationTheme.colors.background,
+					paddingLeft: 10,
+					paddingRight: 10,
+				},
+				containerStyle,
+			]}
+		>
+			{children}
+		</View>
+	);
 }
 
 export default Container;

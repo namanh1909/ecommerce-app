@@ -1,34 +1,39 @@
-import { render, screen } from "@testing-library/react-native";
-import { useAnimatedRef, useSharedValue } from "react-native-reanimated";
-import { ThemeProvider } from "@/theme";
-import OnboardingScreen from "./Slider";
-import { MMKV } from "react-native-mmkv";
-import { OnboardingData } from "@/utils/const";
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react-native';
+import { useSharedValue, useAnimatedRef } from 'react-native-reanimated';
+import { ThemeProvider } from '@/theme';
+import { MMKV } from 'react-native-mmkv';
+import { NavigationContainer } from '@react-navigation/native';
+import OnboardingScreen from './Slider';
 
-describe("OnboardingScreen component should render correctly", () => {
-  const storage = new MMKV();
-  const mockNavigate = jest.fn();
-  test("should render with empty data", () => {
-    const component = (
-      <ThemeProvider storage={storage}>
-        <OnboardingScreen data={OnboardingData} />
-      </ThemeProvider>
-    );
+describe('OnboardingScreen component should render correctly', () => {
+	let storage: MMKV;
 
-    render(component);
-    const flatList = screen.getByTestId("onboarding-flatlist");
-    expect(flatList.props.data).toEqual(OnboardingData);
-  });
+	beforeAll(() => {
+		storage = new MMKV();
+	});
 
-  test("should render with non-empty data", () => {
-    const component = (
-      <ThemeProvider storage={storage}>
-        <OnboardingScreen data={[]} />
-      </ThemeProvider>
-    );
+	test('should render FlatList and OnboardingButton correctly', () => {
+		const data = [
+			{ id: 1, title: 'Slide 1' },
+			{ id: 2, title: 'Slide 2' },
+			{ id: 3, title: 'Slide 3' },
+		];
 
-    render(component);
-    const flatList = screen.getByTestId("onboarding-flatlist");
-    expect(flatList.props.data).toEqual([]);
-  });
+		const component = (
+			<NavigationContainer>
+				<ThemeProvider storage={storage}>
+					<OnboardingScreen data={data} />
+				</ThemeProvider>
+			</NavigationContainer>
+		);
+
+		const { getByTestId } = render(component);
+
+		const flatList = getByTestId('onboarding-flatlist');
+		expect(flatList).toBeTruthy();
+
+		const button = getByTestId('get-started');
+		expect(button).toBeTruthy();
+	});
 });

@@ -1,1 +1,1 @@
-export { default as TwitterIcon } from './TwitterIcon'
+export { default as TwitterIcon } from './TwitterIcon';

@@ -1,27 +1,37 @@
-import { render, screen } from "@testing-library/react-native";
-import { ThemeProvider } from "@/theme";
-import SafeScreen from "./SafeScreen";
-import { MMKV } from "react-native-mmkv";
+import React from 'react';
+import { render } from '@testing-library/react-native';
+import { ThemeProvider } from '@/theme';
+import { MMKV } from 'react-native-mmkv';
+import SafeScreen from './SafeScreen';
+import { View, StatusBar } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ReactTestInstance } from 'react-test-renderer';
 
-describe("SafeScreen component should render correctly", () => {
-  let storage: MMKV;
+jest.mock('react-native-safe-area-context', () => ({
+	useSafeAreaInsets: jest.fn(),
+}));
 
-  beforeAll(() => {
-    storage = new MMKV();
-  });
+describe('SafeScreen component should render correctly', () => {
+	let storage: MMKV;
 
-  test("should render SafeScreen component with children", () => {
-    const component = (
-      <ThemeProvider storage={storage}>
-        <SafeScreen>
-          <div>Test Child</div>
-        </SafeScreen>
-      </ThemeProvider>
-    );
+	beforeAll(() => {
+		storage = new MMKV();
+	});
 
-    render(component);
-    const safeScreenElement = screen.getByText("Test Child");
+	test('should render children correctly', () => {
+		const component = (
+			<ThemeProvider storage={storage}>
+				<SafeScreen>
+					<View testID="child-view" />
+				</SafeScreen>
+			</ThemeProvider>
+		);
 
-    expect(safeScreenElement).toBeTruthy();
-  });
+		const { getByTestId } = render(component);
+
+		const childView = getByTestId('child-view');
+		expect(childView).toBeTruthy();
+	});
+
+
 });

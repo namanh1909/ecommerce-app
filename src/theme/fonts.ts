@@ -46,9 +46,9 @@ export const staticFontStyles = {
 		textAlign: 'center',
 	},
 	alignRight: {
-		textAlign: 'right'
+		textAlign: 'right',
 	},
 	alignLeft: {
-		textAlign: 'left'
+		textAlign: 'left',
 	},
 } as const satisfies Record<string, TextStyle>;

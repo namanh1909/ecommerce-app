@@ -1,16 +1,16 @@
-import React from "react";
-import { OnboardingData } from "@/utils/const";
-import { SafeScreen } from "@/components/template";
-import { Slider } from "@/components/organisms";
+import React from 'react';
+import { OnboardingData } from '@/utils/const';
+import { SafeScreen } from '@/components/template';
+import { Slider } from '@/components/organisms';
 
 function OnboardingScreen() {
-  const loading: boolean = true;
+	const loading: boolean = true;
 
-  return (
-    <SafeScreen>
-      <Slider data={OnboardingData} />
-    </SafeScreen>
-  );
+	return (
+		<SafeScreen>
+			<Slider data={OnboardingData} />
+		</SafeScreen>
+	);
 }
 
 export default OnboardingScreen;

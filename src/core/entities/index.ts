@@ -1,17 +1,17 @@
-import Credential from "./credential";
+import Credential from './credential';
 import {
-    BadRequestError,
-    CredentialError,
-    NetworkError,
-    NotFoundError,
+	BadRequestError,
+	CredentialError,
+	NetworkError,
+	NotFoundError,
 } from './error';
-import { User } from "./user";
+import { User } from './user';
 
 export {
-    Credential,
-    BadRequestError,
-    CredentialError,
-    NetworkError,
-    NotFoundError,
-    User,
-}
+	Credential,
+	BadRequestError,
+	CredentialError,
+	NetworkError,
+	NotFoundError,
+	User,
+};

@@ -15,11 +15,11 @@ const colorsLight = {
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
 	white: '#FFF',
-	facebook: "#3B5998",
-	twitter: "#00ACED",
-	google: "#DB4437",
-	transparent: "transparent",
-	overlay: "rgba(0,0,0,0.5)"
+	facebook: '#3B5998',
+	twitter: '#00ACED',
+	google: '#DB4437',
+	transparent: 'transparent',
+	overlay: 'rgba(0,0,0,0.5)',
 } as const;
 
 const colorsDark = {
@@ -35,11 +35,11 @@ const colorsDark = {
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
 	white: '#FFF',
-	facebook: "#3B5998",
-	twitter: "#00ACED",
-	google: "#DB4437",
-	transparent: "transparent",
-	overlay: "rgba(0,0,0,0.5)"
+	facebook: '#3B5998',
+	twitter: '#00ACED',
+	google: '#DB4437',
+	transparent: 'transparent',
+	overlay: 'rgba(0,0,0,0.5)',
 } as const;
 
 const sizes = [0, 4, 6, 8, 12, 16, 18, 24, 32, 36, 40, 80, 120] as const;
