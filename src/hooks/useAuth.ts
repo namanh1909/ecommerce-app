@@ -9,7 +9,7 @@ import { AuthSelectors, authActions } from "@/core/adapters/app-redux/slices/aut
 import { useAppDispatch } from "@/core/adapters/app-redux/hooks";
 import { useSelector } from "react-redux";
 
-const useLoginScreen = () => {
+const useAuth = () => {
     const [isSignInState, setisSignInState] = useState<boolean>(true);
     const { t } = useTranslation("auth");
     const isProcessing = useSelector(AuthSelectors.isProcessing);
@@ -46,13 +46,13 @@ const useLoginScreen = () => {
         ? textValues.hasAccount
         : textValues.noHasAccount;
 
-    const onChangeFeature = () => {
+    function onChangeFeature() {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setisSignInState((prev) => !prev);
     };
 
     const onSubmit = handleSubmit((data) => {
-        dispatch(authActions.loginRequest(data));
+        isSignInState ? dispatch(authActions.loginRequest(data)) : dispatch(authActions.registerRequest(data))
     });
 
     return {
@@ -68,4 +68,4 @@ const useLoginScreen = () => {
     };
 };
 
-export default useLoginScreen;
+export default useAuth;

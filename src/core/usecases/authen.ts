@@ -9,17 +9,15 @@ export interface AuthenService {
     signingWithCredential(credential: Credential): Promise<any>;
     signUpWithCredential(credential: Credential): Promise<any>;
     registerDevice(deviceInfo: Object): Promise<string>;
-    logout(): Promise<void>;
+    logout(refreshToken: string): Promise<void>;
 }
 
 export class AuthenInteractor {
     authServices: AuthenService;
 
-
     constructor() {
         this.authServices = new AuthenServices();
     }
-
     async getDeviceInfo() {
         const deviceType = await helper.getDeviceType();
         const deviceId = await helper.getDeviceId();
@@ -67,6 +65,13 @@ export class AuthenInteractor {
         }
     }
 
+    async logOut(refreshToken: string): Promise<void> {
+        try {
+            await this.authServices.logout(refreshToken);
+        } catch (ex) {
+            throw ex;
+        }
+    }
 
 
     async registerDevice(): Promise<any> {

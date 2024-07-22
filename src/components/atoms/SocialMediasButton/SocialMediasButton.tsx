@@ -6,7 +6,9 @@ import {
 } from "react-native";
 import React from "react";
 import { useTheme } from "@/theme";
-// import Icon from "react-native-vector-icons/Ionicons";
+import { FacebookIcon } from "../Icons";
+import GoogleIcon from "../Icons/GoogleIcon/GoogleIcon";
+import Twittericon from "../Icons/TwitterIcon/TwitterIcon";
 
 type Props = {
   title: string;
@@ -36,13 +38,13 @@ const SocialMediasButton = (props: Props) => {
   const getIconName = () => {
     switch (type) {
       case "facebook":
-        return "logo-facebook";
+        return <FacebookIcon />;
       case "google":
-        return "logo-google";
+        return <GoogleIcon />;
       case "twitter":
-        return "logo-twitter";
+        return <Twittericon />;
       default:
-        return "logo-social";
+        return <FacebookIcon />;
     }
   };
 
@@ -50,7 +52,7 @@ const SocialMediasButton = (props: Props) => {
     <TouchableOpacity
       style={[
         layout.fullWidth,
-        gutters.paddingVertical_24,
+        gutters.paddingVertical_12,
         getBackgroundColor(),
         layout.itemsCenter,
         borders.rounded_4,
@@ -59,12 +61,7 @@ const SocialMediasButton = (props: Props) => {
       ]}
       onPress={onPress}
     >
-      {/* <Icon
-        name={getIconName() as any}
-        size={20}
-        color={fonts.white.color}
-        style={gutters.marginRight_8}
-      /> */}
+      {getIconName()}
     </TouchableOpacity>
   );
 };

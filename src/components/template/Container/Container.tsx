@@ -3,6 +3,7 @@ import type { PropsWithChildren } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useTheme } from "@/theme";
+import { isIos } from "@/utilities/helper";
 
 type ContainerProps = PropsWithChildren & {
   containerStyle?: ViewStyle;
@@ -18,16 +19,12 @@ function Container({ children, containerStyle }: ContainerProps) {
         layout.flex_1,
         {
           backgroundColor: navigationTheme.colors.background,
-          padding: 10,
-          paddingBottom: 10,
+          paddingLeft: 10,
+          paddingRight: 10,
         },
         containerStyle,
       ]}
     >
-      <StatusBar
-        barStyle={variant === "dark" ? "light-content" : "dark-content"}
-        backgroundColor={navigationTheme.colors.background}
-      />
       {children}
     </View>
   );

@@ -1,1 +1,1 @@
-export { default as useLoginScreen } from './useLoginScreen';
+export { default as useAuth } from './useAuth';

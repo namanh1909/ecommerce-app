@@ -1,7 +1,7 @@
 import { removeItemFromAsyncStorage, saveDataToAsyncStorage } from "@/utilities/helper";
 import Credential from "../entities/credential";
 import { AuthenService } from "../usecases/authen";
-import AuthApiService from "./apis/modules/authenticate";
+import AuthApiService from "../../apis/modules/authenticate";
 import constants from "@/constants";
 
 export class AuthenServices implements AuthenService {
@@ -47,22 +47,24 @@ export class AuthenServices implements AuthenService {
     signUpWithCredential(credential: Credential): Promise<any> {
         return new Promise((resolve, reject) => {
             this.AuthApiService
-                .signIn(credential)
+                .signUp(credential)
                 .then((res: any) => {
                     if (res) {
-                        console.log('data')
-                        // const { data } = res;
-                        // this.addAuthorizationHeader(data);
-                        // // Save token to use for firebase services
-                        // helper.saveDataToAsyncStorage(
-                        //   CONSTANTS.ASYNC_STORAGE_KEYS.REFRESH_TOKEN,
-                        //   data.refresh_token,
-                        // );
-                        // helper.saveDataToAsyncStorage(
-                        //   CONSTANTS.ASYNC_STORAGE_KEYS.TOKEN,
-                        //   data.id_token,
-                        // );
-                        // resolve(data);
+                        const { user, tokens } = res;
+                        saveDataToAsyncStorage(
+                            constants.ASYNC_STORAGE_KEYS.REFRESH_TOKEN,
+                            tokens?.refresh?.token,
+                        );
+                        saveDataToAsyncStorage(
+                            constants.ASYNC_STORAGE_KEYS.TOKEN,
+                            tokens?.access?.token,
+                        );
+                        resolve({ token: tokens?.access?.token, refreshToken: tokens?.refresh?.token, user });
+                    }
+                    else {
+                        console.log('error')
+                        resolve(undefined);
+
                     }
                 })
                 .catch(async (error: any) => {
@@ -95,14 +97,13 @@ export class AuthenServices implements AuthenService {
         });
     }
 
-    logout(): Promise<void> {
+    logout(refreshToken: string): Promise<void> {
         return new Promise((resolve, reject) => {
             this.AuthApiService
-                .logout()
+                .logout(refreshToken)
                 .then(() => {
                     removeItemFromAsyncStorage(constants.ASYNC_STORAGE_KEYS.REFRESH_TOKEN);
                     removeItemFromAsyncStorage(constants.ASYNC_STORAGE_KEYS.TOKEN);
-                    // Clear any stored tokens or user data here if necessary
                     resolve();
                 })
                 .catch((error: any) => {

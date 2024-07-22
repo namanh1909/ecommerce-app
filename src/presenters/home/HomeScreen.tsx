@@ -14,12 +14,17 @@ function HomeScreen() {
   const { t } = useTranslation(["common"]);
 
   return (
-    <Container>
-      <Text style={{ marginBottom: 20 }} i18nKey="home.welcome" />
-      <Image source={DashboardImage} />
-      <Button title="Logout" onPress={() => dispatch(authActions.logout())} />
-      <Text i18nKey={t("appName.full")} />
-    </Container>
+    <SafeScreen>
+      <Container>
+        <Text i18nKey="home.welcome" />
+        <Image source={DashboardImage} />
+        <Button
+          title="Logout"
+          onPress={() => dispatch(authActions.logoutSuccess())}
+        />
+        <Text i18nKey={t("appName.full")} />
+      </Container>
+    </SafeScreen>
   );
 }
 

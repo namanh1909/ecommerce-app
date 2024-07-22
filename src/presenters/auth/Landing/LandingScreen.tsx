@@ -18,47 +18,48 @@ function LadingScreen() {
   const navigateToLogin = () => navigate(AUTHENTICATE_ROUTE.LOGIN);
 
   return (
-    <Container
-      containerStyle={StyleSheet.flatten([
-        layout.itemsCenter,
-        layout.flex_1,
-        layout.itemsCenter,
-      ])}
-    >
-      <Image
-        source={DashboardImage}
-        style={[
-          layout.justifyBetween,
+    <SafeScreen>
+      <Container
+        containerStyle={StyleSheet.flatten([
           layout.itemsCenter,
-          gutters.marginTop_120,
-        ]}
-      />
-      <View style={[layout.flex_1, layout.fullWidth, layout.justifyEnd]}>
-        <Button title="Sign in with email" onPress={navigateToLogin} />
-      </View>
+          layout.itemsCenter,
+        ])}
+      >
+        <Image
+          source={DashboardImage}
+          style={[
+            layout.justifyBetween,
+            layout.itemsCenter,
+            gutters.marginTop_120,
+          ]}
+        />
+        <View style={[layout.flex_1, layout.fullWidth, layout.justifyEnd]}>
+          <Button title="Sign in with email" onPress={navigateToLogin} />
+        </View>
 
-      <Text
-        i18nKey={t("landing.socialLogin")}
-        style={[gutters.marginVertical_16, fonts.medium]}
-      />
-      <View style={[layout.row, layout.justifyBetween, gutters.gap_12]}>
-        <SocialMediasButton
-          title="ion-social-facebook"
-          type="facebook"
-          style={[layout.flex_1]}
+        <Text
+          i18nKey={t("landing.socialLogin")}
+          style={[gutters.marginVertical_16, fonts.medium]}
         />
-        <SocialMediasButton
-          title="Google"
-          type="google"
-          style={[layout.flex_1]}
-        />
-        <SocialMediasButton
-          title="Twitter"
-          type="twitter"
-          style={[layout.flex_1]}
-        />
-      </View>
-    </Container>
+        <View style={[layout.row, layout.justifyBetween, gutters.gap_12]}>
+          <SocialMediasButton
+            title="ion-social-facebook"
+            type="facebook"
+            style={[layout.flex_1]}
+          />
+          <SocialMediasButton
+            title="Google"
+            type="google"
+            style={[layout.flex_1]}
+          />
+          <SocialMediasButton
+            title="Twitter"
+            type="twitter"
+            style={[layout.flex_1]}
+          />
+        </View>
+      </Container>
+    </SafeScreen>
   );
 }
 

@@ -67,11 +67,15 @@ export const saveDataToAsyncStorage = (key: string, value: any): Promise<void> =
 
 export const getDataFromAsyncStorage = async (key: string): Promise<any> => {
     const value = await AsyncStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
+    return value ?? null;
 }
 
 export const removeItemFromAsyncStorage = async (key: string): Promise<void> => {
     await AsyncStorage.removeItem(key);
+}
+
+export const removeAllItemFromAsyncStorage = async (): Promise<void> => {
+    await AsyncStorage.clear()
 }
 
 // New helper functions and constants
@@ -86,16 +90,12 @@ const capitalize = (s: string | undefined | null) => {
     return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
-
-
 export default {
-
     scaleVertical: (size: number) => (height / guidelineBaseHeight) * size,
     scaleHeightComponent: (ratio: number) => height * ratio,
     scaleWidthComponent: (ratio: number) => width * ratio,
     scaleModerate: (size: number, factor = 0.5) =>
         size + (calScale(size) - size) * factor,
-
     isIos,
     getDeviceType: () => DeviceInfo.getSystemName(),
     getDeviceId: () => DeviceInfo.getUniqueId(),

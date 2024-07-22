@@ -29,8 +29,18 @@ export class AuthApiService {
     }
     async signUp(credential: Credential) {
         try {
-            const res = await this.request.post('auth/resgister', {
+            const res = await this.request.post('auth/register', {
                 email: credential._email, password: credential._password, name: credential._name, phone: credential._phone
+            });
+            return res;
+        } catch (ex) {
+            throw ex;
+        }
+    }
+    async logout(refreshToken: string) {
+        try {
+            const res = await this.request.post('auth/logout', {
+                refreshToken: refreshToken
             });
             return res;
         } catch (ex) {

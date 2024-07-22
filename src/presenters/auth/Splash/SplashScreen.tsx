@@ -9,7 +9,9 @@ import SplashBackground from "@/theme/assets/images/splash_background.png";
 function SplashScreen() {
   return (
     <SafeScreen>
-      <ImageBackground source={SplashBackground} />
+      <ImageBackground source={SplashBackground}>
+        <Text></Text>
+      </ImageBackground>
     </SafeScreen>
   );
 }

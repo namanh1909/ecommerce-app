@@ -110,35 +110,11 @@ const StyledInput = (props: StyledInputProps, ref: any) => {
           {...otherProps}
         />
         {renderRight && (
-          <View style={[layout.absolute, { backgroundColor: "red", right: 5 }]}>
-            {renderRight()}
-          </View>
+          <View style={[layout.absolute, { right: 5 }]}>{renderRight()}</View>
         )}
       </WrapInputComponent>
     </View>
   );
 };
-// const styles = ScaledSheet.create({
-//   textInput: {
-//     borderRadius: "10@s",
-//     padding: "10@s",
-//     backgroundColor: Themes.COLORS.secondary,
-//   },
-//   errorMessage: {
-//     fontSize: "12@ms",
-//     color: Themes.COLORS.borderInputError,
-//     marginLeft: "5@s",
-//   },
-//   container: {
-//     // marginTop: '15@s',
-//   },
-//   label: {},
-//   rightView: {
-//     position: "absolute",
-//     right: "10@s",
-//     height: "100%",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
+
 export default forwardRef(StyledInput);

@@ -16,6 +16,7 @@ import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 import Input, { StyledInputProps } from "@/components/atoms/Input/Input";
 import layout from "@/theme/layout";
 import { useTheme } from "@/theme";
+import { CloseEyesIcon, EyesIcon } from "../Icons";
 
 type TName = FieldPath<FieldValues>;
 
@@ -82,7 +83,7 @@ const StyledInputForm = forwardRef((props: FormInputProps, ref: any) => {
         {props?.secureTextEntry &&
           (name.includes("password") || name.includes("confirmPassword")) && (
             <TouchableOpacity onPress={togglePasswordVisibility}>
-              {isPasswordVisible ? <Text>Show</Text> : <Text>Hide</Text>}
+              {isPasswordVisible ? <EyesIcon /> : <CloseEyesIcon />}
             </TouchableOpacity>
           )}
       </>
