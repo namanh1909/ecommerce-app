@@ -8,11 +8,8 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist';
-// import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/rootSaga';
-
-import reactotron from '../../../../ReactotronConfig';
 import { authReducer } from './slices';
 
 const rootReducer = {
@@ -30,7 +27,7 @@ const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-			whiteList: ['doctors', 'userInfo'],
+			whiteList: ['auth'],
 		})
 			// .concat(logger)
 			.prepend(sagaMiddleware),

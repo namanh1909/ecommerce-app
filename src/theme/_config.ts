@@ -77,4 +77,5 @@ export const config = {
 			},
 		},
 	},
+
 } as const satisfies ThemeConfiguration;

@@ -57,6 +57,12 @@ export default {
 	fullHeight: {
 		height: '100%',
 	},
+	height_150: {
+		height: 150
+	},
+	width_300: {
+		width: 300
+	},
 	/* Positions */
 	relative: {
 		position: 'relative',
@@ -88,4 +94,7 @@ export default {
 	z99: {
 		zIndex: 99,
 	},
+	overflow_hidden: {
+		overflow: 'hidden'
+	}
 } as const satisfies Record<string, ViewStyle>;

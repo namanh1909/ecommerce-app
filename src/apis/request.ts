@@ -6,13 +6,12 @@ import i18next from '@/translations';
 import NetInfo from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 import Config from 'react-native-config';
-import helper from '@/utilities/helper';
-import { AuthSelectors } from '@/core/adapters/app-redux/slices/authSlice';
-import { Alert, ToastAndroid } from 'react-native';
+import helper, { getDataFromAsyncStorage, saveDataToAsyncStorage } from '@/utilities/helper';
+import constants from '@/constants';
 // import { ERRORS } from 'utilities/staticData';
 // import i18next from 'utilities/i18next';
 
-// const AUTH_URL_REFRESH_TOKEN = `${process.API_URL}/auth/refreshToken`;
+const AUTH_URL_REFRESH_TOKEN = `${Config.API_URL}/auth/refreshToken`;
 let hasAnyNetworkDialogShown = false;
 
 const { t } = useTranslation(['common']);
@@ -48,18 +47,17 @@ class RequestService {
 		this.request.interceptors.request.use(
 			async (config: any) => {
 				//	Do something before API is sent
-				// const token = AuthSelectors.getToken;
-				// if (token) {
-				//     config.headers.Authorization = `Bearer ${token}`;
-				// }
+				const token = await getDataFromAsyncStorage(constants.ASYNC_STORAGE_KEYS.TOKEN);
+				if (token) {
+					config.headers.Authorization = `Bearer ${token}`;
+				}
 				return config;
 			},
 			(error: any) => {
 				// Do something with API error
 				console.log('error skip', error);
 				apiLogger(
-					`%c FAILED ${error.response.method?.toUpperCase()} from ${
-						error.response.config.url
+					`%c FAILED ${error.response.method?.toUpperCase()} from ${error.response.config.url
 					}:`,
 					'background: red; color: #fff',
 					error.response,
@@ -89,8 +87,7 @@ class RequestService {
 				const { data } = response || {};
 				const { errorMessage, errorKey } = data || {};
 				apiLogger(
-					`%c FAILED ${error.config?.method?.toUpperCase()} from ${
-						error?.config?.url
+					`%c FAILED ${error.config?.method?.toUpperCase()} from ${error?.config?.url
 					}:`,
 					'background: red; color: #fff',
 					error.response,
@@ -99,8 +96,6 @@ class RequestService {
 				if (errorMessage === 'RefreshToken_NotExist') {
 					logger('RefreshToken_NotExist => logout');
 					// Logout here
-					// AlertMessage('Phiên đăng nhập đã hết hạn', 'Doctor Booking', handleDissmissModal());
-
 					return this.rejectError(error, validNetwork);
 				}
 				if (
@@ -118,27 +113,32 @@ class RequestService {
 							originalRequest.headers.Authorization = `Bearer ${queuePromise.token}`;
 							return this.request(originalRequest);
 						} catch (err) {
-							// AlertMessage('Phiên đăng nhập đã hết hạn', 'Doctor Booking', handleDissmissModal());
-
+							// refreshing error => log out here
 							return this.rejectError(String(err), validNetwork);
 						}
 					}
 					logger('refreshing token...');
 					originalRequest.retry = true;
 					this.isRefreshing = true;
-					// const localRefreshToken = TokenProvider.getRefreshToken();
+					const localRefreshToken = await getDataFromAsyncStorage(constants.ASYNC_STORAGE_KEYS.REFRESH_TOKEN);
 					try {
-						// const refreshTokenResponse = await axios.post(AUTH_URL_REFRESH_TOKEN, {
-						//     refreshToken: localRefreshToken,
-						// });
-						// const { token, refreshToken } = refreshTokenResponse.data;
-						// TokenProvider.setAllNewToken(token, refreshToken);
-						// originalRequest.headers.Authorization = `Bearer ${token}`;
-						// this.processQueue(null, token);
+						const refreshTokenResponse = await axios.post(AUTH_URL_REFRESH_TOKEN, {
+							refreshToken: localRefreshToken,
+						});
+						const { token, refreshToken } = refreshTokenResponse.data;
+						saveDataToAsyncStorage(
+							constants.ASYNC_STORAGE_KEYS.REFRESH_TOKEN,
+							refreshToken,
+						);
+						saveDataToAsyncStorage(
+							constants.ASYNC_STORAGE_KEYS.TOKEN,
+							token,
+						);
+						originalRequest.headers.Authorization = `Bearer ${token}`;
+						this.processQueue(null, token);
 						return this.request(originalRequest);
 					} catch (err) {
-						// AlertMessage('Phiên đăng nhập đã hết hạn', 'Doctor Booking', handleDissmissModal());
-
+						// refreshing error => log out here
 						this.processQueue(err, null);
 						return await this.rejectError(String(err), validNetwork);
 					} finally {

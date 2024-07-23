@@ -2,7 +2,7 @@ import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import type { ComponentTheme } from '@/types/theme/theme';
 
 interface AllStyle
-	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> {}
+	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> { }
 
 export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 	return {
@@ -52,5 +52,25 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 			...fonts.size_18,
 			...fonts.medium,
 		},
+		tabContainer: {
+			flexDirection: "row",
+			borderTopColor: "#DEE2E6",
+			justifyContent: "space-around",
+			height: "8%",
+			backgroundColor: "#ffff",
+			shadowColor: "#000",
+			shadowOffset: {
+				width: 0,
+				height: 5,
+			},
+			shadowOpacity: 0.46,
+			shadowRadius: 5,
+
+			elevation: 17,
+		},
+		eventCard: {
+			height: 150,
+			padding: 10,
+		}
 	} as const satisfies AllStyle;
 };
