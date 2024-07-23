@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
-import Button from './Button';
 import { ThemeProvider } from '@/theme';
 import { MMKV } from 'react-native-mmkv';
+import Button from './Button';
 
 describe('Button component should render correctly', () => {
 	let storage: MMKV;

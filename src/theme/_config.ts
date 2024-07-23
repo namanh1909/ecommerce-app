@@ -42,7 +42,7 @@ const colorsDark = {
 	overlay: 'rgba(0,0,0,0.5)',
 } as const;
 
-const sizes = [0, 4, 6, 8, 12, 16, 18, 24, 32, 36, 40, 80, 120] as const;
+const sizes = [0, 4, 6, 8, 10, 12, 16, 18, 24, 32, 36, 40, 80, 120] as const;
 
 export const config = {
 	colors: colorsLight,

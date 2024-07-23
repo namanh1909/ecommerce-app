@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { ThemeProvider } from '@/theme';
-import Container from './Container';
 import { MMKV } from 'react-native-mmkv';
 import { Text } from 'react-native';
+import Container from './Container';
 
 describe('Container component should render correctly', () => {
 	let storage: MMKV;

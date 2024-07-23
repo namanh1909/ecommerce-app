@@ -108,7 +108,7 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation project(':react-native-config')
-    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
+    implementation ('com.facebook.android:facebook-android-sdk:latest.release')
     implementation project(':react-native-fbsdk-next')
 
 

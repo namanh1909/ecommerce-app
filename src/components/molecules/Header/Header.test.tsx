@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import Header from './Header';
 import { useTheme } from '@/theme';
 import { goBack } from '@/navigators/navigation/NavigationService';
+import Header from './Header';
 
 jest.mock('@/theme', () => ({
 	useTheme: jest.fn(),
@@ -42,13 +42,17 @@ describe('Header', () => {
 	});
 
 	it('does not render back button when allowBack is false', () => {
-		const { queryByTestId } = render(<Header title="test.title" allowBack={false} />);
+		const { queryByTestId } = render(
+			<Header title="test.title" allowBack={false} />,
+		);
 		expect(queryByTestId('back-button')).toBeNull();
 	});
 
 	it('calls onGoBack when back button is pressed', () => {
 		const onGoBackMock = jest.fn();
-		const { getByTestId } = render(<Header title="test.title" allowBack onGoBack={onGoBackMock} />);
+		const { getByTestId } = render(
+			<Header title="test.title" allowBack onGoBack={onGoBackMock} />,
+		);
 		fireEvent.press(getByTestId('back-button'));
 		expect(onGoBackMock).toHaveBeenCalled();
 	});

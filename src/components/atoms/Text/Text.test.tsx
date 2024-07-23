@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Text from './Text';
 import { useTranslation } from 'react-i18next';
+import Text from './Text';
 
 jest.mock('react-i18next', () => ({
 	useTranslation: jest.fn(),
@@ -27,7 +27,9 @@ describe('Text', () => {
 	});
 
 	it('renders text with i18nKey and i18nParams', () => {
-		const { getByText } = render(<Text i18nKey="test.key" i18nParams={{ param: 'value' }} />);
+		const { getByText } = render(
+			<Text i18nKey="test.key" i18nParams={{ param: 'value' }} />,
+		);
 		expect(getByText('test.key {"param":"value"}')).toBeTruthy();
 	});
 

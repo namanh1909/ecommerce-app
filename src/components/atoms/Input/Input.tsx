@@ -93,7 +93,7 @@ function Input(props: StyledInputProps, ref: any) {
 				onPress={onPress}
 			>
 				<TextInput
-					testID='inputTestId'
+					testID="inputTestId"
 					ref={ref || input}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}

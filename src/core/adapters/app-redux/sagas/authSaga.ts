@@ -19,7 +19,7 @@ function* handleLoginRequest({
 		const signInImpl = AuthImp.signIn.bind(AuthImp); // Binding the context
 		const signInResp: any = yield call(signInImpl, credential); // Calling the method
 		yield put(
-		authActions.loginSuccess({
+			authActions.loginSuccess({
 				user: signInResp?.user,
 				token: signInResp?.token,
 				refreshToken: signInResp?.refreshToken,

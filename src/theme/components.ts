@@ -48,5 +48,9 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 			...fonts.medium,
 			textTransform: 'uppercase',
 		},
+		h2: {
+			...fonts.size_18,
+			...fonts.medium,
+		},
 	} as const satisfies AllStyle;
 };

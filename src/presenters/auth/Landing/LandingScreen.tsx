@@ -20,24 +20,21 @@ function LadingScreen() {
 
 	return (
 		<SafeScreen>
-				<View>
+			<View>
 				<LoginButton
-					onLoginFinished={
-						(error, result) => {
+					onLoginFinished={(error, result) => {
 						if (error) {
-							console.log("login has error: " + result);
+							console.log(`login has error: ${result}`);
 						} else if (result.isCancelled) {
-							console.log("login is cancelled.");
+							console.log('login is cancelled.');
 						} else {
-							AccessToken.getCurrentAccessToken().then(
-							(data) => {
-								console.log(data)
-							}
-							)
+							AccessToken.getCurrentAccessToken().then(data => {
+								console.log(data);
+							});
 						}
-						}
-					}
-					onLogoutFinished={() => console.log("logout.")}/>
+					}}
+					onLogoutFinished={() => console.log('logout.')}
+				/>
 			</View>
 			<Container
 				containerStyle={StyleSheet.flatten([
@@ -62,18 +59,9 @@ function LadingScreen() {
 					style={[gutters.marginVertical_16, fonts.medium]}
 				/>
 				<View style={[layout.row, layout.justifyBetween, gutters.gap_12]}>
-					<SocialMediasButton
-						type="facebook"
-						style={[layout.flex_1]}
-					/>
-					<SocialMediasButton
-						type="google"
-						style={[layout.flex_1]}
-					/>
-					<SocialMediasButton
-						type="twitter"
-						style={[layout.flex_1]}
-					/>
+					<SocialMediasButton type="facebook" style={[layout.flex_1]} />
+					<SocialMediasButton type="google" style={[layout.flex_1]} />
+					<SocialMediasButton type="twitter" style={[layout.flex_1]} />
 				</View>
 			</Container>
 		</SafeScreen>

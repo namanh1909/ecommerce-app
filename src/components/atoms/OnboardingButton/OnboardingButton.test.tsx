@@ -3,8 +3,8 @@ import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { ThemeProvider } from '@/theme';
 import { MMKV } from 'react-native-mmkv';
 import { FlatList } from 'react-native';
-import OnboardingButton from './OnboardingButton';
 import { AUTHENTICATE_ROUTE } from '@/navigators/navigation/config/routes';
+import OnboardingButton from './OnboardingButton';
 
 describe('OnboardingButton component should render correctly', () => {
 	test('should trigger navigation when pressed at the last index', () => {

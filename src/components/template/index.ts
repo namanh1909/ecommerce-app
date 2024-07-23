@@ -1,2 +1,2 @@
-export {  SafeScreen } from './SafeScreen';
-export {  Container } from './Container';
+export { SafeScreen } from './SafeScreen';
+export { Container } from './Container';

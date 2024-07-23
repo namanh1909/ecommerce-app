@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import LadingScreen from './LandingScreen';
 import { ThemeProvider } from '@/theme';
 import { MMKV } from 'react-native-mmkv';
 import { NavigationContainer } from '@react-navigation/native';
+import LadingScreen from './LandingScreen';
 
 jest.mock('react-i18next', () => ({
 	useTranslation: jest.fn().mockReturnValue({

@@ -47,7 +47,7 @@ class RequestService {
 	private initializeRequestInterceptor() {
 		this.request.interceptors.request.use(
 			async (config: any) => {
-			//	Do something before API is sent
+				//	Do something before API is sent
 				// const token = AuthSelectors.getToken;
 				// if (token) {
 				//     config.headers.Authorization = `Bearer ${token}`;
@@ -56,7 +56,7 @@ class RequestService {
 			},
 			(error: any) => {
 				// Do something with API error
-				console.log('error skip', error)
+				console.log('error skip', error);
 				apiLogger(
 					`%c FAILED ${error.response.method?.toUpperCase()} from ${
 						error.response.config.url

@@ -11,7 +11,6 @@ import {
 import { ArrowLeftIcon } from '@/components/atoms/Icons';
 import { goBack, navigate } from '@/navigators/navigation/NavigationService';
 import { Text } from '@/components/atoms';
-import { useTranslation } from 'react-i18next';
 
 type HeaderProps = {
 	left?: React.ReactNode;
@@ -27,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({
 	right,
 	title,
 	style,
-	allowBack = true,
+	allowBack,
 	onGoBack,
 }) => {
 	const { gutters, backgrounds, fonts } = useTheme();
@@ -49,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({
 		>
 			<View style={[layout.flex_1]}>
 				{allowBack && (
-					<TouchableOpacity testID='back-button' onPress={onBack}>
+					<TouchableOpacity testID="back-button" onPress={onBack}>
 						<ArrowLeftIcon />
 					</TouchableOpacity>
 				)}

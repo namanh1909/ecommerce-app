@@ -1,10 +1,10 @@
-import {  View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
 import type { PropsWithChildren } from 'react';
 
 import { useTheme } from '@/theme';
 
 type ContainerProps = PropsWithChildren & {
-	containerStyle?: ViewStyle;
+	containerStyle?: StyleProp<ViewStyle>;
 };
 
 function Container({ children, containerStyle }: ContainerProps) {
@@ -12,7 +12,7 @@ function Container({ children, containerStyle }: ContainerProps) {
 
 	return (
 		<View
-			testID='container-id'
+			testID="container-id"
 			style={[
 				layout.flex_1,
 				{

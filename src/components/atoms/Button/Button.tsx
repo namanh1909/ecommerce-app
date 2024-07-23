@@ -23,7 +23,7 @@ function Button(props: Props) {
 		useTheme();
 	return (
 		<TouchableOpacity
-			testID='button-test'
+			testID="button-test"
 			style={[
 				layout.fullWidth,
 				gutters.paddingVertical_24,

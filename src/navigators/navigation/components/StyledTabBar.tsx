@@ -1,15 +1,6 @@
+import { Text } from '@/components/atoms';
 import React from 'react';
-import {
-	Platform,
-	View,
-	Image,
-	StyleSheet,
-	TouchableOpacity,
-} from 'react-native';
-import Metrics from 'assets/metrics';
-import { StyledText, StyledTouchable } from 'components/base';
-import { Colors, Sizes, Themes } from 'assets/themes';
-import Size from 'assets/sizes';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 function StyledTabBar({ state, descriptors, navigation }: any) {
 	return (
@@ -41,7 +32,6 @@ function StyledTabBar({ state, descriptors, navigation }: any) {
 					<TouchableOpacity
 						activeOpacity={1}
 						accessibilityRole="button"
-						// accessibilityStates={isFocused ? ['selected'] : []}
 						accessibilityLabel={options.tabBarAccessibilityLabel}
 						testID={options.tabBarTestID}
 						onPress={onPress}
@@ -49,25 +39,7 @@ function StyledTabBar({ state, descriptors, navigation }: any) {
 						key={route.key}
 						style={[styles.tabButton]}
 					>
-						{isFocused ? options.icon[0] : options.icon[1]}
-						{/* <Image
-                            source={options?.icon}
-                            style={[
-                                styles.tabIcon,
-                                { tintColor: isFocused ? Themes.COLORS.primary : Themes.COLORS.textPrimary },
-                            ]}
-                        /> */}
-						<StyledText
-							customStyle={[
-								styles.tabLabel,
-								{
-									color: isFocused
-										? Colors.brandColors.lightBlue
-										: Colors.grays.medium,
-								},
-							]}
-							i18nText={options?.title || ''}
-						/>
+						{!isFocused ? options.icon : options.iconForcus}
 					</TouchableOpacity>
 				);
 			})}
@@ -82,7 +54,7 @@ const styles = StyleSheet.create({
 		borderTopColor: '#DEE2E6',
 		justifyContent: 'space-around',
 		// alignItems: Platform.OS === 'ios' ? 'flex-end' : 'center',
-		height: '10%',
+		height: '8%',
 		backgroundColor: '#ffff',
 		shadowColor: '#000',
 		shadowOffset: {
@@ -107,7 +79,7 @@ const styles = StyleSheet.create({
 	tabLabel: {
 		// paddingLeft: Size.PADDING.defaultTextPadding,
 		textAlign: 'center',
-		fontSize: Sizes.FONTSIZE.small,
+		// fontSize: Sizes.FONTSIZE.small,
 		fontWeight: '600',
 		paddingTop: 8,
 	},

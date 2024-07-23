@@ -8,3 +8,4 @@ export { Button } from './Button';
 export { SocialMediasButton } from './SocialMediasButton';
 export { Text } from './Text';
 export { OverlayLoading } from './OverlayLoading';
+export { IconButton } from './IconButton';

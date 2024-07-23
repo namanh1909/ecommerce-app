@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
+import { useTheme } from '@/theme';
 import SocialMediasButton from './SocialMediasButton';
 import { FacebookIcon } from '../Icons';
 import GoogleIcon from '../Icons/GoogleIcon/GoogleIcon';
 import Twittericon from '../Icons/TwitterIcon/TwitterIcon';
-import { useTheme } from '@/theme';
 
 jest.mock('@/theme', () => ({
 	useTheme: jest.fn(),
 }));
 
-describe('SocialMediasButton', () => {  
+describe('SocialMediasButton', () => {
 	const mockUseTheme = useTheme as jest.Mock;
 
 	beforeEach(() => {
@@ -39,7 +39,9 @@ describe('SocialMediasButton', () => {
 
 	it('calls onPress when button is pressed', () => {
 		const onPressMock = jest.fn();
-		const { getByTestId } = render(<SocialMediasButton type="facebook" onPress={onPressMock} />);
+		const { getByTestId } = render(
+			<SocialMediasButton type="facebook" onPress={onPressMock} />,
+		);
 		fireEvent.press(getByTestId('social-btn'));
 		expect(onPressMock).toHaveBeenCalled();
 	});

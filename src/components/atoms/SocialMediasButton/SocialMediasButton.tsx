@@ -17,7 +17,7 @@ type Props = {
 };
 
 function SocialMediasButton(props: Props) {
-	const {  onPress, type, style } = props;
+	const { onPress, type, style } = props;
 	const { layout, gutters, backgrounds, fonts, borders, components } =
 		useTheme();
 
@@ -37,11 +37,11 @@ function SocialMediasButton(props: Props) {
 	const getIconName = () => {
 		switch (type) {
 			case 'facebook':
-				return <FacebookIcon testID='facebook-icon'/>;
+				return <FacebookIcon testID="facebook-icon" />;
 			case 'google':
-				return <GoogleIcon testID='google-icon' />;
+				return <GoogleIcon testID="google-icon" />;
 			case 'twitter':
-				return <Twittericon testID='twitter-icon'/>;
+				return <Twittericon testID="twitter-icon" />;
 			default:
 				return <FacebookIcon />;
 		}
@@ -49,7 +49,7 @@ function SocialMediasButton(props: Props) {
 
 	return (
 		<TouchableOpacity
-			testID='social-btn'
+			testID="social-btn"
 			style={[
 				layout.fullWidth,
 				gutters.paddingVertical_12,

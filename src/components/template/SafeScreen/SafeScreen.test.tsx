@@ -2,10 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { ThemeProvider } from '@/theme';
 import { MMKV } from 'react-native-mmkv';
-import SafeScreen from './SafeScreen';
 import { View, StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ReactTestInstance } from 'react-test-renderer';
+import SafeScreen from './SafeScreen';
 
 jest.mock('react-native-safe-area-context', () => ({
 	useSafeAreaInsets: jest.fn(),
@@ -32,6 +32,4 @@ describe('SafeScreen component should render correctly', () => {
 		const childView = getByTestId('child-view');
 		expect(childView).toBeTruthy();
 	});
-
-
 });

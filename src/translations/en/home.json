@@ -1,0 +1,10 @@
+{
+    "home": "Home",
+    "homeScreen": {
+        "eventNear": "Events Near you"
+    },
+
+    "tab": {
+        "home": "Home"
+    }
+}

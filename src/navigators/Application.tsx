@@ -18,7 +18,7 @@ function ApplicationNavigator() {
 		<SafeAreaProvider>
 			<NavigationContainer theme={navigationTheme} ref={navigationRef}>
 				<Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
-					{user ? (
+					{true ? (
 						<Stack.Screen name="AppStack" component={AppStack} />
 					) : (
 						<Stack.Screen name="AuthStack" component={AuthStack} />
@@ -30,7 +30,5 @@ function ApplicationNavigator() {
 }
 
 export default function App() {
-	return (
-		<ApplicationNavigator />
-	);
+	return <ApplicationNavigator />;
 }
