@@ -2,100 +2,40 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-Bold.otf",
-      "sha1": "4b8de823e83e48c33509268713d11bb0e8bec25a"
+      "path": "src/theme/assets/fonts/Inter-Black.ttf",
+      "sha1": "f79fa58ace5f55e338c99bf71e7e0702841df6f2"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-BoldCn.otf",
-      "sha1": "fa3dad9c4d33a2d6579401a3f9138258347f03a9"
+      "path": "src/theme/assets/fonts/Inter-Bold.ttf",
+      "sha1": "47ff07c75746682133b81e7ac0537ce50a4c9916"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-BoldCnIt.otf",
-      "sha1": "c4f96bfb8b14ace5da65576cf112bdcd98cf9fec"
+      "path": "src/theme/assets/fonts/Inter-ExtraBold.ttf",
+      "sha1": "c9b3d2f2449ab2c67ff075f806973fa3d7e104b3"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-BoldIt.otf",
-      "sha1": "3c756b8d206143447553e5fa9387ed933b960e57"
+      "path": "src/theme/assets/fonts/Inter-ExtraLight.ttf",
+      "sha1": "f78ee1d6cbfc64f656247c604ef270ef116abbf5"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-Cn.otf",
-      "sha1": "8878da3567a33f540ba6a710bc053278f8a101c3"
+      "path": "src/theme/assets/fonts/Inter-Light.ttf",
+      "sha1": "cbb2506d8da21edbb2dc8cfa26e3b42a97d138f8"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-CnIt.otf",
-      "sha1": "a631633c1b93c0a4ff557ff5a340bcd471f58d25"
+      "path": "src/theme/assets/fonts/Inter-Medium.ttf",
+      "sha1": "e76f580811e031813e7150131a0724811cdd737a"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-Demi.otf",
-      "sha1": "c0b32adb5cbf313ae28e11e48780230708a6f907"
+      "path": "src/theme/assets/fonts/Inter-Regular.ttf",
+      "sha1": "cfa780d0b50b2bb7eacb82984f1b18a95aaa40c5"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-DemiCn.otf",
-      "sha1": "b605317aec03f2d9257727b2e520e93e33c5c633"
+      "path": "src/theme/assets/fonts/Inter-SemiBold.ttf",
+      "sha1": "5e0c44e57e7e090252d79f622899e67585bb892c"
     },
     {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-DemiCnIt.otf",
-      "sha1": "4552620aab90a87246ec4d3ccf13b402f23cf502"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-DemiIt.otf",
-      "sha1": "3c031e9f0b54e93b2e99d311224978c19a83c685"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-Heavy.otf",
-      "sha1": "c8e8441036d0ccf844f84f5a001104a101f11854"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-HeavyCn.otf",
-      "sha1": "345770ae1f39c47c0f707bd77a7c2748ff8a0129"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-HeavyCnIt.otf",
-      "sha1": "663389493ed0bbd37e192fad0d824b7f7a2c6602"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-HeavyIt.otf",
-      "sha1": "00e03d3e6fc5fb2845eb8a14809d6211de16b35f"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-It.otf",
-      "sha1": "4bc751ea7e0fcee2382b53ca98c9d07884f1df9e"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-Medium.otf",
-      "sha1": "3c46682396394ef0b1061d03f9d1c647d4de69fb"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-MediumCn.otf",
-      "sha1": "d45c6d346c6e7c7bfd49a71aa9be0434d23a1a1d"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-MediumCnIt.otf",
-      "sha1": "a438eded1a5ece376712909580f9b35de0d77172"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-MediumIt.otf",
-      "sha1": "90f4dcde045f034e2fc078ea64a486c214c2c1f3"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-Regular.otf",
-      "sha1": "944265a509ca5034d2a5275bb11314e672c8337f"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-UltLt.otf",
-      "sha1": "42beaa7d97128666bdee6abcb86fa4fcd4a6438e"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-UltLtCn.otf",
-      "sha1": "03511b7d231cb7dd1e09dfac7c601af133d50f62"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-UltLtCnIt.otf",
-      "sha1": "d6e2b095b2b0873ae070e82c34f0b57f1a114c80"
-    },
-    {
-      "path": "src/theme/assets/fonts/AvenirNextLTPro-UltLtIt.otf",
-      "sha1": "16436ab1721710ff863bb36d98c62c5a1ba7825b"
+      "path": "src/theme/assets/fonts/Inter-Thin.ttf",
+      "sha1": "757805e615c974756646e54ceff8e409d5c47207"
     }
   ]
 }

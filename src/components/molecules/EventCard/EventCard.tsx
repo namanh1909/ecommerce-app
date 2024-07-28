@@ -20,7 +20,7 @@ function EventCard(props: Props) {
           layout.width_300,
           layout.height_150,
           layout.overflow_hidden,
-          gutters.margin_10,
+          gutters.marginLeft_10,
           borders.rounded_6,
         ]}
       >

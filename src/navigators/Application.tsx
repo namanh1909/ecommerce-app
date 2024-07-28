@@ -18,7 +18,7 @@ function ApplicationNavigator() {
     <SafeAreaProvider>
       <NavigationContainer theme={navigationTheme} ref={navigationRef}>
         <Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
-          {true ? (
+          {false ? (
             <Stack.Screen name="AppStack" component={AppStack} />
           ) : (
             <Stack.Screen name="AuthStack" component={AuthStack} />

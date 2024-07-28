@@ -51,32 +51,47 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb457671827149237</string>
+			</array>
+		</dict>
+	</array>
+	<key>Facebook457671827149237</key>
+	<string>457671827149237</string>
+	<key>FacebookClientToken</key>
+	<string>77fd75c36904b1fd4f009ab678e6ed5d</string>
+	<key>FacebookDisplayName</key>
+	<string>Event</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>AvenirNextLTPro-Bold.otf</string>
-		<string>AvenirNextLTPro-BoldCn.otf</string>
-		<string>AvenirNextLTPro-BoldCnIt.otf</string>
-		<string>AvenirNextLTPro-BoldIt.otf</string>
-		<string>AvenirNextLTPro-Cn.otf</string>
-		<string>AvenirNextLTPro-CnIt.otf</string>
-		<string>AvenirNextLTPro-Demi.otf</string>
-		<string>AvenirNextLTPro-DemiCn.otf</string>
-		<string>AvenirNextLTPro-DemiCnIt.otf</string>
-		<string>AvenirNextLTPro-DemiIt.otf</string>
-		<string>AvenirNextLTPro-Heavy.otf</string>
-		<string>AvenirNextLTPro-HeavyCn.otf</string>
-		<string>AvenirNextLTPro-HeavyCnIt.otf</string>
-		<string>AvenirNextLTPro-HeavyIt.otf</string>
-		<string>AvenirNextLTPro-It.otf</string>
-		<string>AvenirNextLTPro-Medium.otf</string>
-		<string>AvenirNextLTPro-MediumCn.otf</string>
-		<string>AvenirNextLTPro-MediumCnIt.otf</string>
-		<string>AvenirNextLTPro-MediumIt.otf</string>
-		<string>AvenirNextLTPro-Regular.otf</string>
-		<string>AvenirNextLTPro-UltLt.otf</string>
-		<string>AvenirNextLTPro-UltLtCn.otf</string>
-		<string>AvenirNextLTPro-UltLtCnIt.otf</string>
-		<string>AvenirNextLTPro-UltLtIt.otf</string>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-ExtraBold.ttf</string>
+		<string>Inter-ExtraLight.ttf</string>
+		<string>Inter-Light.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Inter-Thin.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+	<dict>
+	<key>CFBundleURLSchemes</key>
+	<array>
+		<string>fb457671827149237</string>
+	</array>
+	</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>457671827149237</string>
+	<key>FacebookClientToken</key>
+	<string>77fd75c36904b1fd4f009ab678e6ed5d</string>
+	<key>FacebookDisplayName</key>
+	<string>Event</string>
 </dict>
 </plist>
