@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,20 +13,20 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_background" translatesAutoresizingMaskIntoConstraints="NO" id="zxd-8U-hWe">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="892"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen 1" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-d7-skn">
+                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.59215686274509804" green="0.45882352941176469" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="zxd-8U-hWe" secondAttribute="bottom" id="E53-QS-K9m"/>
-                            <constraint firstItem="zxd-8U-hWe" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="UQg-BZ-YJy"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="zxd-8U-hWe" secondAttribute="trailing" id="Ysq-MQ-gjY"/>
-                            <constraint firstItem="zxd-8U-hWe" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nRf-zh-s2w"/>
+                            <constraint firstItem="bxe-d7-skn" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="9x9-Xi-QVK"/>
+                            <constraint firstItem="bxe-d7-skn" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="G2Y-ex-KeT"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="bxe-d7-skn" secondAttribute="trailing" id="JEd-Ex-H44"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="bxe-d7-skn" secondAttribute="bottom" id="wZH-z6-BjD"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,9 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash_background" width="125" height="270.66665649414062"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="Screen 1" width="1500" height="3248"/>
     </resources>
 </document>
