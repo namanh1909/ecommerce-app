@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import AsyncStorage from '@react-native-community/async-storage';
+import { MMKV } from 'react-native-mmkv';
 import i18next from 'i18next';
 import { DevSettings, Platform, Dimensions, StatusBar } from 'react-native';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
@@ -13,9 +13,13 @@ import env from 'react-native-config';
 import lowerCase from 'lodash/lowerCase';
 import upperFirst from 'lodash/upperFirst';
 import constants from '@/constants';
+import { PersistConfig } from 'redux-persist';
 
 const normalHitSlop = { right: 7, left: 7, top: 7, bottom: 7 };
 const { width, height } = Dimensions.get('window');
+
+// Initialize MMKV instance
+export const storage = new MMKV();
 
 // Existing constants and functions
 export const isAndroid = Platform.OS === 'android';
@@ -40,47 +44,48 @@ export function logger(msg: any, isWarning?: boolean, params?: any): void {
 
 export const addMenuClearAsyncStorage = () => {
 	if (__DEV__) {
-		DevSettings.addMenuItem('Clear AsyncStorage', () => {
-			AsyncStorage.clear();
+		DevSettings.addMenuItem('Clear MMKV Storage', () => {
+			storage.clearAll();
 			DevSettings.reload();
 		});
 	}
 };
 
-export function generatePersistConfig(key: string, whitelist: string[]) {
-	return {
-		key,
-		whitelist,
-		version: 1,
-		debug: __DEV__,
-		storage: AsyncStorage,
-		stateReconciler: autoMergeLevel2,
-	};
-}
+export const generatePersistConfig = (key: string, whitelist: string[]): PersistConfig<any> => ({
+	key,
+	storage: {
+		getItem: (key) => Promise.resolve(storage.getString(key) || null),
+		setItem: (key, value) => Promise.resolve(storage.set(key, value)),
+		removeItem: (key) => Promise.resolve(storage.delete(key)),
+	},
+	whitelist,
+	version: 1,
+	debug: true,
+});
 
 export const saveDataToAsyncStorage = (
 	key: string,
 	value: any,
-): Promise<void> => {
-	return AsyncStorage.setItem(
+): void => {
+	storage.set(
 		key,
 		typeof value === 'object' ? JSON.stringify(value) : value,
 	);
 };
 
 export const getDataFromAsyncStorage = async (key: string): Promise<any> => {
-	const value = await AsyncStorage.getItem(key);
+	const value = storage.getString(key);
 	return value ?? null;
 };
 
 export const removeItemFromAsyncStorage = async (
 	key: string,
 ): Promise<void> => {
-	await AsyncStorage.removeItem(key);
+	storage.delete(key);
 };
 
 export const removeAllItemFromAsyncStorage = async (): Promise<void> => {
-	await AsyncStorage.clear();
+	storage.clearAll();
 };
 
 // New helper functions and constants

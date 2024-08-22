@@ -12,3 +12,6 @@ export { SettingIcon } from './SettingIcon';
 export { HeartIcon } from './HeartIcon';
 export { ProfileIcon } from './ProfileIcon';
 export { FilterIcon } from './FilterIcon';
+export { MenuIcon } from './MenuIcon';
+export { CartIcon } from './CartIcon';
+export { VoiceIcon } from './VoiceIcon';

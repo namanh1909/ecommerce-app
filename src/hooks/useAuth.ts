@@ -12,8 +12,7 @@ import {
 import { useAppDispatch } from '@/core/adapters/app-redux/hooks';
 import { useSelector } from 'react-redux';
 
-const useAuth = () => {
-	const [isSignInState, setisSignInState] = useState<boolean>(true);
+const useAuth = ({ isSignInState }: { isSignInState: boolean }) => {
 	const { t } = useTranslation('auth');
 	const isProcessing = useSelector(AuthSelectors.isProcessing);
 	const dispatch = useAppDispatch();
@@ -36,23 +35,7 @@ const useAuth = () => {
 		reset();
 	}, [isSignInState]);
 
-	const textValues = {
-		signIn: t('header.signIn'),
-		signUp: t('header.signUp'),
-		noHasAccount: t('label.noHasAccount'),
-		hasAccount: t('label.hasAccount'),
-	};
 
-	const featureText = isSignInState ? textValues.signIn : textValues.signUp;
-	const featureDiffText = isSignInState ? textValues.signUp : textValues.signIn;
-	const alreadyHasAccount = isSignInState
-		? textValues.hasAccount
-		: textValues.noHasAccount;
-
-	function onChangeFeature() {
-		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-		setisSignInState(prev => !prev);
-	}
 
 	const onSubmit = handleSubmit(data => {
 		isSignInState
@@ -63,10 +46,6 @@ const useAuth = () => {
 	return {
 		isSignInState,
 		form,
-		featureText,
-		featureDiffText,
-		alreadyHasAccount,
-		onChangeFeature,
 		onSubmit,
 		isProcessing,
 		t,

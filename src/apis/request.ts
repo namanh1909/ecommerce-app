@@ -1,5 +1,4 @@
 import { apiLogger, logger } from '@/utilities/logger';
-// import { ERRORS } from '@/utilities/staticData';
 import axios, { AxiosRequestConfig } from 'axios';
 import i18next from '@/translations';
 // import Config from 'react-native-config';
@@ -8,8 +7,6 @@ import { useTranslation } from 'react-i18next';
 import Config from 'react-native-config';
 import helper, { getDataFromAsyncStorage, saveDataToAsyncStorage } from '@/utilities/helper';
 import constants from '@/constants';
-// import { ERRORS } from 'utilities/staticData';
-// import i18next from 'utilities/i18next';
 
 const AUTH_URL_REFRESH_TOKEN = `${Config.API_URL}/auth/refreshToken`;
 let hasAnyNetworkDialogShown = false;

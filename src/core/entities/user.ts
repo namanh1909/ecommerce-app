@@ -1,5 +1,4 @@
 import { isEmpty, pick, keys } from 'lodash';
-import { Email } from './email';
 // @flow
 export class User {
 	static getCollectionName() {
@@ -24,9 +23,7 @@ export class User {
 
 	profileImage: string = '';
 
-	getEmail(): Email {
-		return new Email(this.contactEmail);
-	}
+
 	// email: Email;
 	// firstName: string;
 	// lastName: string;

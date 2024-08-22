@@ -71,6 +71,21 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 		eventCard: {
 			height: 150,
 			padding: 10,
+		},
+		title: {
+			fontSize: 24,
+			fontFamily: "Inter-SemiBold",
+		},
+		label: {
+			fontSize: 14,
+			fontFamily: "Inter-Regular",
+			color: '#8F959E'
+		},
+		des: {
+			fontSize: 12,
+			fontFamily: "Inter-Regular",
+			color: '#8F959E',
+			textAlign: "center"
 		}
 	} as const satisfies AllStyle;
 };

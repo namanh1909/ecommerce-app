@@ -6,17 +6,17 @@ export class ErrorMessage {
 
 	message: string = '';
 
-	responseMessage: any = '';
+	responseMessage: string = '';
 }
 class NetworkError extends Error {
 	status = -1;
-
-	responseMessage: any;
 
 	constructor(error: ErrorMessage) {
 		super(error.message || 'ERRORS.NETWORK_CONNECTION');
 		// Saving class name in the property of our custom error as a shortcut.
 		this.name = this.constructor.name;
+		// @ts-ignore
+
 		this.responseMessage = error.responseMessage;
 		// Capturing stack trace, excluding constructor call from it.
 		// Error.captureStackTrace(this, this.constructor);
@@ -29,12 +29,11 @@ class NetworkError extends Error {
 	}
 }
 class CredentialError extends Error {
-	responseMessage: any;
-
 	constructor(error: ErrorMessage) {
 		super(error.message || 'ERRORS.CREDENTIAL');
 		// Saving class name in the property of our custom error as a shortcut.
 		this.name = this.constructor.name;
+		// @ts-ignore
 		this.responseMessage = error.responseMessage;
 		// Capturing stack trace, excluding constructor call from it.
 		// Error.captureStackTrace(this, this.constructor);
@@ -49,12 +48,12 @@ class CredentialError extends Error {
 class NotFoundError extends Error {
 	status = 404;
 
-	responseMessage: any;
-
 	constructor(error: ErrorMessage) {
 		super(error.message || 'ERRORS.404');
 		// Saving class name in the property of our custom error as a shortcut.
 		this.name = this.constructor.name;
+		// @ts-ignore
+
 		this.responseMessage = error.responseMessage;
 
 		// Capturing stack trace, excluding constructor call from it.
@@ -71,12 +70,12 @@ class NotFoundError extends Error {
 class BadRequestError extends Error {
 	status = 400;
 
-	responseMessage: any;
-
 	constructor(error: ErrorMessage) {
 		super(error.message || 'ERRORS.400');
 		// Saving class name in the property of our custom error as a shortcut.
 		this.name = this.constructor.name;
+		// @ts-ignore
+
 		this.responseMessage = error.responseMessage;
 
 		// Capturing stack trace, excluding constructor call from it.
@@ -93,12 +92,12 @@ class BadRequestError extends Error {
 class RequestEntityTooLarge extends Error {
 	status = 413;
 
-	responseMessage: any;
-
 	constructor(error: ErrorMessage) {
 		super(error.message || 'ERRORS.413');
 		// Saving class name in the property of our custom error as a shortcut.
 		this.name = this.constructor.name;
+		// @ts-ignore
+
 		this.responseMessage = error.responseMessage;
 
 		// Capturing stack trace, excluding constructor call from it.

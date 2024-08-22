@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Container, SafeScreen } from "@/components/template";
 import DashboardImage from "@/theme/assets/images/dashboard.png";
@@ -14,54 +14,37 @@ import { AccessToken, LoginButton } from "react-native-fbsdk-next";
 
 function LadingScreen() {
   const { t } = useTranslation(["auth"]);
-  const { gutters, fonts } = useTheme();
+  const { gutters, fonts, components } = useTheme();
 
-  const navigateToLogin = () => navigate(AUTHENTICATE_ROUTE.LOGIN);
+  const navigateToSignIn = () => navigate(AUTHENTICATE_ROUTE.LOGIN);
+  const navigateToSignUp = () => navigate(AUTHENTICATE_ROUTE.REGISTER);
 
   return (
     <SafeScreen>
-      <View>
-        <LoginButton
-          onLoginFinished={(error, result) => {
-            if (error) {
-              console.log(`login has error: ${result}`);
-            } else if (result.isCancelled) {
-              console.log("login is cancelled.");
-            } else {
-              AccessToken.getCurrentAccessToken().then((data) => {
-                console.log(data);
-              });
-            }
-          }}
-          onLogoutFinished={() => console.log("logout.")}
-        />
-      </View>
       <Container
-        containerStyle={StyleSheet.flatten([
+        allowBack
+        containerStyle={[
+          layout.flex_1,
+          layout.justifyBetween,
           layout.itemsCenter,
-          layout.itemsCenter,
-        ])}
+        ]}
       >
-        <Image
-          source={DashboardImage}
-          style={[
-            layout.justifyBetween,
-            layout.itemsCenter,
-            gutters.marginTop_120,
-          ]}
-        />
-        <View style={[layout.flex_1, layout.fullWidth, layout.justifyEnd]}>
-          <Button title="Sign in with email" onPress={navigateToLogin} />
+        <View>
+          <Text style={[components.title]} i18nKey={"landing.start"} />
         </View>
-
-        <Text
-          i18nKey={t("landing.socialLogin")}
-          style={[gutters.marginVertical_16, fonts.medium]}
-        />
-        <View style={[layout.row, layout.justifyBetween, gutters.gap_12]}>
-          <SocialMediasButton type="facebook" style={[layout.flex_1]} />
-          <SocialMediasButton type="google" style={[layout.flex_1]} />
-          <SocialMediasButton type="twitter" style={[layout.flex_1]} />
+        <View style={[layout.fullWidth, gutters.gap_4]}>
+          <SocialMediasButton type="facebook" />
+          <SocialMediasButton type="twitter" />
+          <SocialMediasButton type="google" />
+        </View>
+        <View style={[layout.fullWidth, gutters.gap_12, layout.itemsCenter]}>
+          <View style={[layout.row, gutters.gap_4]}>
+            <Text style={[components.label]} i18nKey={"landing.Already"} />
+            <TouchableOpacity onPress={navigateToSignUp}>
+              <Text i18nKey={"header.signIn"} />
+            </TouchableOpacity>
+          </View>
+          <Button title="landing.Create" onPress={navigateToSignIn} />
         </View>
       </Container>
     </SafeScreen>

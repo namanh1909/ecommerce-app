@@ -17,9 +17,11 @@ const colorsLight = {
 	white: '#FFF',
 	facebook: '#3B5998',
 	twitter: '#00ACED',
-	google: '#DB4437',
+	google: '#EA4335',
 	transparent: 'transparent',
 	overlay: 'rgba(0,0,0,0.5)',
+	primary: "#9775FA",
+	screenBg: "#fff"
 } as const;
 
 const colorsDark = {
@@ -35,14 +37,16 @@ const colorsDark = {
 	blue: '#4090FE',
 	lightBlue: '#C0D9FB',
 	white: '#FFF',
-	facebook: '#3B5998',
+	facebook: '#4267B2',
 	twitter: '#00ACED',
-	google: '#DB4437',
+	google: '#EA4335',
 	transparent: 'transparent',
 	overlay: 'rgba(0,0,0,0.5)',
+	screenBg: "#fff"
+
 } as const;
 
-const sizes = [0, 4, 6, 8, 10, 12, 16, 18, 24, 32, 36, 40, 80, 120] as const;
+const sizes = [0, 4, 6, 8, 10, 12, 14, 16, 18, 24, 32, 36, 40, 80, 120] as const;
 
 export const config = {
 	colors: colorsLight,

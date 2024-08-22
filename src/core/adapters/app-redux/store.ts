@@ -11,6 +11,7 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/rootSaga';
 import { authReducer } from './slices';
+import screenTracking from './middleware/ScreenTrackingMiddleware';  // Import your custom middleware
 
 const rootReducer = {
 	auth: authReducer,
@@ -20,8 +21,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
 	reducer: rootReducer,
-
-	middleware: getDefaultMiddleware =>
+	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			immutableCheck: false,
 			serializableCheck: {
@@ -29,13 +29,9 @@ const store = configureStore({
 			},
 			whiteList: ['auth'],
 		})
-			// .concat(logger)
-			.prepend(sagaMiddleware),
+			.prepend(sagaMiddleware)  // Prepend sagaMiddleware to the middleware chain
+			.concat(screenTracking),  // Add your custom screen tracking middleware here
 	devTools: __DEV__,
-	// enhancers: (getDefaultEnhancers) => [
-	//     ...getDefaultEnhancers(),
-	//     (reactotron as any).createEnhancer()
-	// ],
 });
 
 sagaMiddleware.run(rootSaga);
