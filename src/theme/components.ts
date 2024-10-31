@@ -1,5 +1,6 @@
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import type { ComponentTheme } from '@/types/theme/theme';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 interface AllStyle
 	extends Record<string, AllStyle | ImageStyle | TextStyle | ViewStyle> { }
@@ -73,8 +74,8 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 			padding: 10,
 		},
 		title: {
-			fontSize: 24,
-			fontFamily: "Inter-SemiBold",
+			fontSize: 18,
+			fontFamily: "Inter-Medium",
 		},
 		label: {
 			fontSize: 14,
@@ -86,6 +87,27 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 			fontFamily: "Inter-Regular",
 			color: '#8F959E',
 			textAlign: "center"
+		},
+		viewAll: {
+			fontSize: 14,
+			color: '#8F959E',
+			fontFamily: "Inter-Regular",
+
+		},
+		products: {
+			container: {
+
+			},
+			title: {
+				maxWidth: 150,
+			},
+			brand: {
+				fontWeight: 'bold',
+			},
+			price: {
+				fontSize: 18,
+				fontWeight: 'bold'
+			}
 		}
 	} as const satisfies AllStyle;
 };

@@ -4,6 +4,7 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import layout from "@/theme/layout";
@@ -15,10 +16,11 @@ type Props = {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  loading?: boolean;
 };
 
 function Button(props: Props) {
-  const { title, onPress, buttonStyle, textStyle } = props;
+  const { title, onPress, buttonStyle, textStyle, loading = false } = props;
   const { layout, gutters, backgrounds, fonts, borders, components } =
     useTheme();
   return (
@@ -33,11 +35,16 @@ function Button(props: Props) {
         buttonStyle,
       ]}
       onPress={onPress}
+      disabled={loading}
     >
-      <Text
-        i18nKey={title}
-        style={[fonts.medium, fonts.white, textStyle, fonts.size_16]}
-      />
+      {loading ? (
+        <ActivityIndicator size="small" color={fonts.white.color} />
+      ) : (
+        <Text
+          i18nKey={title}
+          style={[fonts.medium, fonts.white, textStyle, fonts.size_16]}
+        />
+      )}
     </TouchableOpacity>
   );
 }

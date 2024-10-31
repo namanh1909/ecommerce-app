@@ -2,7 +2,7 @@ import React from "react";
 import { Container, SafeScreen } from "@/components/template";
 import StyledInputForm from "@/components/atoms/InputForm/InputForm";
 import { useTheme } from "@/theme";
-import { Button, Text } from "@/components/atoms";
+import { Button, LogoAppIcon, Text } from "@/components/atoms";
 import { FormProvider } from "react-hook-form";
 import { View } from "react-native";
 import { useAuth } from "@/hooks";
@@ -13,39 +13,33 @@ function SignUp() {
 
   return (
     <SafeScreen>
-      <Container allowBack containerStyle={[layout.justifyBetween]}>
+      <Container
+        allowBack
+        containerStyle={[layout.justifyBetween, layout.itemsCenter]}
+      >
         <Text
           style={[components.title, fonts.alignCenter]}
           i18nKey={t("header.signUp")}
         />
+        <LogoAppIcon />
         <View style={[gutters.gap_16]}>
           <FormProvider {...form}>
-            <StyledInputForm
-              label={t("label.name")}
-              name="name"
-              customPlaceHolder={t("placeholder.name")}
-            />
-            <StyledInputForm
-              label={t("label.phone")}
-              name="phone"
-              customPlaceHolder={t("placeholder.phone")}
-            />
             <StyledInputForm
               label={t("label.email")}
               name="email"
               customPlaceHolder={t("placeholder.email")}
-            />
-            <StyledInputForm
-              label={t("label.password")}
-              name="password"
-              customPlaceHolder={t("placeholder.password")}
-              secureTextEntry
+              loading={isProcessing}
+              disabled={false}
             />
           </FormProvider>
         </View>
 
         <View style={[layout.row, layout.justifyBetween]}>
-          <Button title={t("header.signUp")} onPress={onSubmit} />
+          <Button
+            title={t("header.confirm")}
+            onPress={onSubmit}
+            loading={isProcessing}
+          />
         </View>
       </Container>
     </SafeScreen>

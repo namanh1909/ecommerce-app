@@ -18,15 +18,13 @@ const BrandCard = (props: Props) => {
         gutters.padding_8,
         gutters.gap_10,
         borders.rounded_10,
-        { backgroundColor: "#F5F6FA", minWidth: 90, maxWidth: 110 },
+        { backgroundColor: "#F5F6FA", maxHeight: 40 },
       ]}
     >
-      <View style={[layout.row, gutters.padding_4, backgrounds.white]}>
-        <Image
-          source={{ uri: brand.brandImage }}
-          style={{ width: 20, height: 20 }}
-        />
-      </View>
+      <Image
+        source={{ uri: brand.brandImage }}
+        style={{ width: 20, height: 20 }}
+      />
       <Text style={[fonts.medium]}>{brand.brandName}</Text>
     </View>
   );

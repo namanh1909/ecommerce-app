@@ -1,4 +1,4 @@
-import Credential from './credential';
+import { Credential } from './credential';
 import {
 	BadRequestError,
 	CredentialError,
@@ -6,6 +6,7 @@ import {
 	NotFoundError,
 } from './error';
 import { User } from './user';
+import { Product } from './product';
 
 export {
 	Credential,
@@ -14,4 +15,5 @@ export {
 	NetworkError,
 	NotFoundError,
 	User,
+	Product
 };

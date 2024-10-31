@@ -6,6 +6,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import helper from '@/utilities/helper';
 import constants from '@/constants';
 import { authActions } from '../slices/authSlice';
+import { ErrorMessage, NetworkError } from '@/core/entities/error';
 
 const AuthImp: AuthenInteractor = container.get(AuthenInteractor);
 
@@ -17,7 +18,7 @@ function* handleLoginRequest({
 		// calling api activated code
 		const credential = new Credential(email, password);
 		const signInImpl = AuthImp.signIn.bind(AuthImp); // Binding the context
-		const signInResp: any = yield call(signInImpl, credential); // Calling the method
+		const signInResp = yield call(signInImpl, credential); // Calling the method
 		yield put(
 			authActions.loginSuccess({
 				user: signInResp?.user,
@@ -25,7 +26,7 @@ function* handleLoginRequest({
 				refreshToken: signInResp?.refreshToken,
 			}),
 		);
-	} catch (ex: any) {
+	} catch (ex: NetworkError) {
 		yield put(authActions.loginFailure({ error: ex.message }));
 	}
 }
@@ -52,6 +53,7 @@ function* handleRegisterRequest({
 			}),
 		);
 	} catch (ex: any) {
+		console.log('ex', ex.message)
 		yield put(authActions.registerFailure({ error: ex.message }));
 	}
 }

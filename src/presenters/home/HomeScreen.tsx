@@ -5,18 +5,19 @@ import { useTheme } from "@/theme";
 import { CartIcon, MenuIcon } from "@/components/atoms";
 import { View } from "react-native";
 import { BrandCard, SearchInput } from "@/components/molecules";
+import { Arraival, Brand } from "@/components/organisms";
+import HeaderPage from "./components/HeaderPage";
 
 function HomeScreen() {
   const { t } = useTranslation(["home"]);
   const { components, gutters, layout } = useTheme();
   return (
     <SafeScreen>
-      <Container containerStyle={[gutters.gap_10]}>
-        <View style={[layout.row, layout.justifyBetween]}>
-          <MenuIcon />
-          <CartIcon />
-        </View>
-        <SearchInput />
+      <Container>
+        <HeaderPage />
+        <SearchInput allowVoice containerStyle={gutters.marginTop_10} />
+        <Brand />
+        <Arraival />
       </Container>
     </SafeScreen>
   );

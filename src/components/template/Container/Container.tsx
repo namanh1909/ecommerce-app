@@ -25,8 +25,6 @@ function Container({
         {
           paddingLeft: 12,
           paddingRight: 12,
-          paddingBottom: 12,
-          paddingTop: 12,
         },
       ]}
     >

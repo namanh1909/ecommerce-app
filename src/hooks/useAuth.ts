@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LayoutAnimation } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { registerSchema } from '@/utilities/yup/yupSchema';
-import { DEFAULT_FORM_LOGIN } from '@/utilities/yup/defaultForm';
 import {
 	AuthSelectors,
 	authActions,
@@ -16,9 +15,8 @@ const useAuth = ({ isSignInState }: { isSignInState: boolean }) => {
 	const { t } = useTranslation('auth');
 	const isProcessing = useSelector(AuthSelectors.isProcessing);
 	const dispatch = useAppDispatch();
-	const form = useForm({
-		mode: 'onChange',
-		defaultValues: DEFAULT_FORM_LOGIN,
+	const form = useForm<AuthenForm>({
+		mode: 'onSubmit',
 		resolver: yupResolver(registerSchema(!isSignInState)),
 		reValidateMode: 'onChange',
 		criteriaMode: 'firstError',
@@ -34,8 +32,6 @@ const useAuth = ({ isSignInState }: { isSignInState: boolean }) => {
 	useEffect(() => {
 		reset();
 	}, [isSignInState]);
-
-
 
 	const onSubmit = handleSubmit(data => {
 		isSignInState

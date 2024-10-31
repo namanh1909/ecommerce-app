@@ -1,0 +1,107 @@
+{
+	"root": true,
+	"parser": "babel-eslint",
+	"extends": [
+		"@react-native-community",
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true,
+			"experimentalObjectRestSpread": true
+		}
+	},
+	"rules": {
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [
+					".js",
+					".jsx",
+					".tsx",
+					".ts"
+				]
+			}
+		],
+		"prettier/prettier": [
+			"error",
+			{
+				"trailingComma": "all",
+				"useTab": true
+			}
+		],
+		"class-methods-use-this": [
+			0
+		],
+		"no-useless-catch": "off",
+		"no-nested-ternary": "off",
+		"camelcase": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/camelcase": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"react/display-name": "off",
+		"import/no-cycle": "off",
+		"no-underscore-dangle": [
+			2,
+			{
+				"allowAfterThis": true
+			}
+		],
+		"import/no-unresolved": "off",
+		"@typescript-eslint/no-var-requires": "off",
+	},
+	"settings": {
+		"import/extensions": [
+			".js",
+			".jsx",
+			".ts",
+			".tsx"
+		],
+		"import/parsers": {
+			"@typescript-eslint/parser": [
+				".ts",
+				".tsx"
+			]
+		},
+		"import/resolver": {
+			"node": {
+				"paths": [
+					"./src"
+				],
+				"extensions": [
+					".js",
+					".jsx",
+					".ts",
+					".tsx",
+					"json"
+				],
+				"~": "./",
+				"Src": "./src",
+				"Components": "./src/components",
+				"Core": "./src/core",
+				"Constants": "./src/constants",
+				"Presenters": "./src/presenters",
+				"Style": "./src/style",
+				"Navigation": "./src/navigations"
+			}
+		},
+		"react": {
+			"pragma": "React",
+			"version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+		}
+	},
+	"plugins": [
+		"react",
+		"react-native",
+		"prettier",
+		"react-hooks"
+	]
+}

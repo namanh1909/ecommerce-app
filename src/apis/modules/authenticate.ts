@@ -1,10 +1,11 @@
 import { Credential } from '@/core/entities';
 import request from '../request'; // Ensure correct import
+import { Axios } from 'axios';
 
 let instance: AuthApiService;
 
 export class AuthApiService {
-	private request: any;
+	private request: Axios;
 
 	constructor() {
 		this.request = request; // Use the imported request instance
@@ -32,7 +33,7 @@ export class AuthApiService {
 	async signUp(credential: Credential) {
 		try {
 			const res = await this.request.post('auth/register', {
-				email: credential._email,
+				email: credential._email.address,
 				password: credential._password,
 				name: credential._name,
 				phone: credential._phone,

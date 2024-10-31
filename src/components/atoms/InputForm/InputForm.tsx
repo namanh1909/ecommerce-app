@@ -11,7 +11,13 @@ import {
   UseFormStateReturn,
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import Input, { StyledInputProps } from "@/components/atoms/Input/Input";
 import layout from "@/theme/layout";
 import { useTheme } from "@/theme";
@@ -36,11 +42,13 @@ interface FormInputProps extends StyledInputProps {
     formState,
   }: IParamsRender) => React.ReactElement;
   dynamicOnChangeName?: string;
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 const InputForm = forwardRef((props: FormInputProps, ref: any) => {
   const { t } = useTranslation();
-  const { layout, borders } = useTheme();
+  const { layout, borders, fonts } = useTheme();
   const {
     name,
     rules,
@@ -49,6 +57,8 @@ const InputForm = forwardRef((props: FormInputProps, ref: any) => {
     InputComponent = Input,
     form,
     dynamicOnChangeName = "onChangeText",
+    loading = false,
+    disabled = false,
     ...inputProps
   } = props;
   const formContext = useFormContext();
@@ -79,7 +89,23 @@ const InputForm = forwardRef((props: FormInputProps, ref: any) => {
   function RenderRight() {
     const { getFieldState } = formContext || form;
     const fieldState = getFieldState(name);
-    return <>{fieldState.invalid && <Text>Y</Text>}</>;
+
+    if (loading) {
+      return <ActivityIndicator size="small" />;
+    }
+
+    if (props.secureTextEntry) {
+      return (
+        <TouchableOpacity
+          onPress={togglePasswordVisibility}
+          disabled={disabled}
+        >
+          {isPasswordVisible ? <CloseEyesIcon /> : <EyesIcon />}
+        </TouchableOpacity>
+      );
+    }
+
+    return null;
   }
 
   const renderBaseInput = ({
@@ -105,8 +131,11 @@ const InputForm = forwardRef((props: FormInputProps, ref: any) => {
           {...customInputProps}
           secureTextEntry={props?.secureTextEntry && isPasswordVisible}
           renderRight={RenderRight}
+          editable={!disabled}
         />
-        {!!error && <Text style={styles.errorMessage}>{error?.message}</Text>}
+        {!!error && (
+          <Text style={[fonts.red500, fonts.size_12]}>{error?.message}</Text>
+        )}
       </>
     );
   };
@@ -123,12 +152,3 @@ const InputForm = forwardRef((props: FormInputProps, ref: any) => {
 });
 
 export default InputForm;
-
-const styles = StyleSheet.create({
-  errorMessage: {
-    fontSize: 12,
-    // color: Themes.COLORS.borderInputError,
-    marginLeft: 5,
-    // fontFamily: Fonts.regular,
-  },
-});

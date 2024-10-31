@@ -14,7 +14,7 @@ import { AccessToken, LoginButton } from "react-native-fbsdk-next";
 
 function LadingScreen() {
   const { t } = useTranslation(["auth"]);
-  const { gutters, fonts, components } = useTheme();
+  const { gutters, fonts, components, backgrounds } = useTheme();
 
   const navigateToSignIn = () => navigate(AUTHENTICATE_ROUTE.LOGIN);
   const navigateToSignUp = () => navigate(AUTHENTICATE_ROUTE.REGISTER);
@@ -24,26 +24,22 @@ function LadingScreen() {
       <Container
         allowBack
         containerStyle={[
-          layout.flex_1,
           layout.justifyBetween,
           layout.itemsCenter,
+          layout.flex_1,
         ]}
       >
-        <View>
-          <Text style={[components.title]} i18nKey={"landing.start"} />
-        </View>
-        <View style={[layout.fullWidth, gutters.gap_4]}>
+        <Text
+          style={[components.title, gutters.marginTop_40]}
+          i18nKey={"landing.start"}
+        />
+
+        <View style={[layout.fullWidth, gutters.gap_8]}>
           <SocialMediasButton type="facebook" />
           <SocialMediasButton type="twitter" />
           <SocialMediasButton type="google" />
         </View>
         <View style={[layout.fullWidth, gutters.gap_12, layout.itemsCenter]}>
-          <View style={[layout.row, gutters.gap_4]}>
-            <Text style={[components.label]} i18nKey={"landing.Already"} />
-            <TouchableOpacity onPress={navigateToSignUp}>
-              <Text i18nKey={"header.signIn"} />
-            </TouchableOpacity>
-          </View>
           <Button title="landing.Create" onPress={navigateToSignIn} />
         </View>
       </Container>

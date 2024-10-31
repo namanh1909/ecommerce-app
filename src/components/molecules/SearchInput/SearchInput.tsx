@@ -1,17 +1,20 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, ViewStyle } from "react-native";
 import React from "react";
 import { SearchIcon, VoiceIcon } from "@/components/atoms";
 import { useTheme } from "@/theme";
 
 type Props = {
   allowVoice?: boolean;
+  containerStyle?: ViewStyle;
 };
 
 const SearchInput = (props: Props) => {
   const { layout, gutters, borders, backgrounds } = useTheme();
-  const { allowVoice } = props;
+  const { allowVoice, containerStyle } = props;
   return (
-    <View style={[layout.row, layout.fullWidth, gutters.gap_12]}>
+    <View
+      style={[layout.row, layout.fullWidth, gutters.gap_12, containerStyle]}
+    >
       <View
         style={[
           layout.row,

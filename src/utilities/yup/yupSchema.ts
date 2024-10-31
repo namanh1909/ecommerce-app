@@ -18,9 +18,9 @@ export const registerSchema = (isSignUp: boolean) => {
 			.required(t('error:validatePassword')),
 		phone: isSignUp
 			? yup
-					.string()
-					.matches(/^[0-9]{10}$/, t('error:phoneInvalid'))
-					.required(t('error:phoneInvalid'))
+				.string()
+				.matches(/^[0-9]{10}$/, t('error:phoneInvalid'))
+				.required(t('error:phoneInvalid'))
 			: yup.string().notRequired(),
 	});
 };

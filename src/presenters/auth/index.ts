@@ -1,5 +1,5 @@
-export { LandingScreen } from './Landing';
-export { SignUp } from './SignUp';
-export { SignIn } from './SignIn';
-export { OnboardScreen } from './Onboard';
+export { LandingScreen } from './landing';
+export { SignUp } from './signUp';
+export { SignIn } from './signIn';
+export { OnboardScreen } from './onBoard';
 

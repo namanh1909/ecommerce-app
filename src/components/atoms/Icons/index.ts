@@ -15,3 +15,6 @@ export { FilterIcon } from './FilterIcon';
 export { MenuIcon } from './MenuIcon';
 export { CartIcon } from './CartIcon';
 export { VoiceIcon } from './VoiceIcon';
+export { DoneIcon } from './DoneIcon';
+export { RejectIcon } from './RejectIcon';
+export { LogoAppIcon } from './LogoAppIcon';
