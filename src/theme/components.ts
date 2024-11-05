@@ -108,6 +108,14 @@ export default ({ layout, backgrounds, fonts, gutters }: ComponentTheme) => {
 				fontSize: 18,
 				fontWeight: 'bold'
 			}
-		}
+		},
+		underlineStyleBase: {
+			width: 50,
+			height: 55,
+			borderColor: '#F2F4F7',
+			borderRadius: 8,
+			color: Colors.black,
+			backgroundColor: '#F2F4F7',
+		},
 	} as const satisfies AllStyle;
 };

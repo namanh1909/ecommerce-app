@@ -7,6 +7,7 @@ import {
 } from './error';
 import { User } from './user';
 import { Product } from './product';
+import { OTP } from './otp';
 
 export {
 	Credential,
@@ -15,5 +16,6 @@ export {
 	NetworkError,
 	NotFoundError,
 	User,
-	Product
+	Product,
+	OTP
 };

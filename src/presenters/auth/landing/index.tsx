@@ -14,10 +14,9 @@ import { AccessToken, LoginButton } from "react-native-fbsdk-next";
 
 function LadingScreen() {
   const { t } = useTranslation(["auth"]);
-  const { gutters, fonts, components, backgrounds } = useTheme();
+  const { gutters, components } = useTheme();
 
-  const navigateToSignIn = () => navigate(AUTHENTICATE_ROUTE.LOGIN);
-  const navigateToSignUp = () => navigate(AUTHENTICATE_ROUTE.REGISTER);
+  const navigateToSignIn = () => navigate(AUTHENTICATE_ROUTE.ACTIVATION);
 
   return (
     <SafeScreen>

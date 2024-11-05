@@ -1,5 +1,4 @@
-export { LandingScreen } from './landing';
-export { SignUp } from './signUp';
-export { SignIn } from './signIn';
-export { OnboardScreen } from './onBoard';
-
+export { default as LandingScreen } from './landing';
+export { default as VerifyAccountScreen } from './verifyAccount';
+export { default as SplashScreen } from './splash';
+export { default as OnboardingScreen } from './onboarding';

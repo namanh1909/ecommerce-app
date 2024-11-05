@@ -1,12 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-
 import { Host } from "react-native-portalize";
-import OnboardingScreen from "@/presenters/auth/onBoard/OnboardScreen";
-import LadingScreen from "@/presenters/auth/landing/LandingScreen";
+import OnboardingScreen from "@/presenters/auth/onboarding";
+import LadingScreen from "@/presenters/auth/landing";
 import { AUTHENTICATE_ROUTE } from "../config/routes";
 import navigationConfigs from "../config/options";
-import { SignIn, SignUp } from "@/presenters/auth";
+import { VerifyAccountScreen } from "@/presenters/auth";
+import ActivationAccountScreen from "@/presenters/auth/activationAccount";
 
 const UnauthenStack = createStackNavigator();
 
@@ -23,12 +23,12 @@ function AuthScenes() {
           component={LadingScreen}
         />
         <UnauthenStack.Screen
-          name={AUTHENTICATE_ROUTE.LOGIN}
-          component={SignUp}
+          name={AUTHENTICATE_ROUTE.ACTIVATION}
+          component={VerifyAccountScreen}
         />
         <UnauthenStack.Screen
-          name={AUTHENTICATE_ROUTE.REGISTER}
-          component={SignIn}
+          name={AUTHENTICATE_ROUTE.SEND_OTP}
+          component={ActivationAccountScreen}
         />
       </UnauthenStack.Navigator>
     </Host>

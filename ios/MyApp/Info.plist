@@ -65,7 +65,7 @@
 	<key>FacebookClientToken</key>
 	<string>77fd75c36904b1fd4f009ab678e6ed5d</string>
 	<key>FacebookDisplayName</key>
-	<string>Event</string>
+	<string>Event</string>					
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-Black.ttf</string>

@@ -8,25 +8,27 @@ import {
 } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import { generatePersistConfig } from '@/utilities/helper';
-import { Credential, User } from '@/core/entities';
-
-import { CommonStatus } from './types';
+import { User } from '@/core/entities';
 
 interface AuthState {
 	token: string | null;
 	user: User | null;
-	errors: any | null;
+	errors: string | null;
 	loggedIn: boolean;
 	isProcessing: boolean;
 	refreshToken: string | null;
+	errorEmail?: string | null;
+	email?: string | null;
+	otp?: string | null;
+	otpError?: string | null;
 }
 
 type Reducer<A extends Action<any> = AnyAction> = CaseReducer<AuthState, A>;
 
 const initialState: AuthState = {
-	token: null,
+	token: '',
 	user: null,
-	errors: null,
+	errors: '',
 	loggedIn: false,
 	isProcessing: false,
 	refreshToken: null,
@@ -45,6 +47,7 @@ const loginSuccess: Reducer<
 	state.user = payload.user;
 	state.loggedIn = true;
 	state.errors = null;
+	state.errorEmail = null;
 };
 
 const loginFailure: Reducer<PayloadAction<any>> = (state, { payload }) => {
@@ -90,7 +93,50 @@ const registerSuccess: Reducer<
 
 const registerFailure: Reducer<PayloadAction<any>> = (state, { payload }) => {
 	state.isProcessing = false;
-	state.errors = payload;
+	state.errorEmail = payload;
+};
+
+const validateEmailRequest: Reducer<PayloadAction<{ email: string }>> = (state, { payload }) => {
+	state.email = payload.email;
+	state.isProcessing = true;
+};
+
+const validateEmailSuccess: Reducer<PayloadAction<{ email: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+	state.errors = null;
+	state.email = payload.email;
+	state.errorEmail = null;
+
+};
+
+const validateEmailFailure: Reducer<PayloadAction<{ error: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+	state.errorEmail = payload.error;
+};
+
+const submitEmail: Reducer<PayloadAction<{ error: string }>> = () => {
+
+};
+
+const submitOTPCode: Reducer<PayloadAction<{ error: string }>> = () => {
+
+};
+
+const submitOTPRequest: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
+	state.otp = payload.otp;
+	state.isProcessing = true;
+};
+
+const submitOTPFailure: Reducer<PayloadAction<{ error: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+	state.otpError = payload.error;
+};
+
+const submitOTPSuccess: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+	state.errors = null;
+	state.otp = payload.otp;
+	state.otpError = null;
 };
 
 const authSlice = createSlice({
@@ -106,6 +152,14 @@ const authSlice = createSlice({
 		registerRequest,
 		registerSuccess,
 		registerFailure,
+		validateEmailRequest,
+		validateEmailSuccess,
+		validateEmailFailure,
+		submitEmail,
+		submitOTPCode,
+		submitOTPRequest,
+		submitOTPSuccess,
+		submitOTPFailure
 	},
 });
 
@@ -125,4 +179,7 @@ export const AuthSelectors = {
 	user: createSelector(AuthSelector, auth => auth.user),
 	resellers: createSelector(AuthSelector, auth => auth.resellers),
 	havePincode: createSelector(AuthSelector, auth => auth.havePincode),
+	getErrorEmail: createSelector(AuthSelector, auth => auth.errorEmail),
+	getEmail: createSelector(AuthSelector, auth => auth.email),
+	getOTP: createSelector(AuthSelector, auth => auth.OTP)
 };

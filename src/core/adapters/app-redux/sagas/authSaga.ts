@@ -1,32 +1,82 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { Credential } from '@/core/entities';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { Credential, OTP } from '@/core/entities';
 import { AuthenInteractor } from '@/core/usecases/authen';
 import { container } from '@/core/framworks/configs';
 import { PayloadAction } from '@reduxjs/toolkit';
 import helper from '@/utilities/helper';
 import constants from '@/constants';
-import { authActions } from '../slices/authSlice';
-import { ErrorMessage, NetworkError } from '@/core/entities/error';
+import { authActions, AuthSelectors } from '../slices/authSlice';
+import { NetworkError } from '@/core/entities/error';
+import { Email } from '@/core/entities/email';
+import { navigate } from '@/navigators/navigation/NavigationService';
+import { AUTHENTICATE_ROUTE } from '@/navigators/navigation/config/routes';
 
 const AuthImp: AuthenInteractor = container.get(AuthenInteractor);
+
+export function* checkValidateEmail({
+}: PayloadAction<{ email: string }>): Generator {
+	try {
+		const email = yield select(AuthSelectors.getEmail);
+		// Validate email using Email class
+		const emailInstance = new Email(email as string);
+		if (emailInstance.address) {
+			yield put(authActions.validateEmailSuccess({ email: emailInstance.address }));
+			navigate(AUTHENTICATE_ROUTE.SEND_OTP);
+		} else {
+			yield put(authActions.validateEmailFailure({ error: 'Invalid email address' }));
+		}
+	} catch (ex: any) {
+		yield put(authActions.validateEmailFailure({ error: ex.message }));
+	}
+}
+
+export function* checkValidateOTP({
+}: PayloadAction<{ otp: string }>): Generator {
+	try {
+		const otp = yield select(AuthSelectors.getOTP);
+		const OTPInstance = new OTP(otp as string);
+		if (OTPInstance.code) {
+			yield put(authActions.submitOTPSuccess({ otp: OTPInstance.code }));
+		} else {
+			yield put(authActions.submitOTPFailure({ error: 'Invalid OTP code' }));
+		}
+	} catch (ex: any) {
+		yield put(authActions.validateEmailFailure({ error: ex.message }));
+	}
+}
+
+function* handleValidateEmailRequest({
+	payload,
+}: PayloadAction<{ email: string }>): Generator {
+	try {
+		const { email } = payload;
+		console.log(email);
+		// Validate email using Email class
+		const emailInstance = new Email(email);
+		yield put(authActions.validateEmailSuccess({ email: emailInstance.address }));
+	} catch (ex: any) {
+		console.log('ex', ex.message)
+		yield put(authActions.validateEmailFailure({ error: ex.message }));
+	}
+}
 
 function* handleLoginRequest({
 	payload,
 }: PayloadAction<{ email: string; password: string }>): Generator {
 	try {
-		const { email, password } = payload;
-		// calling api activated code
-		const credential = new Credential(email, password);
-		const signInImpl = AuthImp.signIn.bind(AuthImp); // Binding the context
-		const signInResp = yield call(signInImpl, credential); // Calling the method
-		yield put(
-			authActions.loginSuccess({
-				user: signInResp?.user,
-				token: signInResp?.token,
-				refreshToken: signInResp?.refreshToken,
-			}),
-		);
-	} catch (ex: NetworkError) {
+		// const { email, password } = payload;
+		// // calling api activated code
+		// const credential = new Credential(email, password);
+		// const signInImpl = AuthImp.signIn.bind(AuthImp); // Binding the context
+		// const signInResp = yield call(signInImpl, credential); // Calling the method
+		// yield put(
+		// 	authActions.loginSuccess({
+		// 		user: signInResp?.user,
+		// 		token: signInResp?.token,
+		// 		refreshToken: signInResp?.refreshToken,
+		// 	}),
+		// );
+	} catch (ex: any) {
 		yield put(authActions.loginFailure({ error: ex.message }));
 	}
 }
@@ -73,6 +123,8 @@ export function* signOut() {
 }
 
 export default function* authSaga() {
+	yield takeLatest(authActions.submitEmail.type, checkValidateEmail);
+	yield takeLatest(authActions.validateEmailRequest.type, handleValidateEmailRequest);
 	yield takeLatest(authActions.loginRequest.type, handleLoginRequest);
 	yield takeLatest(authActions.registerRequest.type, handleRegisterRequest);
 	yield takeLatest(authActions.logoutRequest.type, signOut);
