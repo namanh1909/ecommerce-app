@@ -1,7 +1,5 @@
 import { Email } from './email';
 
-
-
 export class Credential {
 	_email: Email;
 	_password: string;

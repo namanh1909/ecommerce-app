@@ -3,9 +3,9 @@ import {
 	saveDataToAsyncStorage,
 } from '@/utilities/helper';
 import constants from '@/constants';
-import Credential from '../entities/credential';
 import { AuthenService } from '../usecases/authen';
 import AuthApiService from '../../apis/modules/authenticate';
+import { Credential } from '../entities';
 
 export class AuthenServices implements AuthenService {
 	static INTERCEPTORS_TOKEN = -1;
@@ -17,6 +17,42 @@ export class AuthenServices implements AuthenService {
 	constructor() {
 		this.AuthApiService = AuthApiService;
 	}
+
+	submitOTPCode(email: string, code: string): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.AuthApiService.submitOTP(email, code)
+				.then((res: any) => {
+					console.log(res);
+					if (res) {
+						resolve(res);
+					} else {
+						reject(new Error('Failed to request OTP code'));
+					}
+				})
+				.catch((error: any) => {
+					reject(error);
+				});
+		});
+	}
+
+	requestOTPCode(email: string): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.AuthApiService.requestOTP(email)
+				.then((res: any) => {
+					console.log(res);
+					if (res) {
+						resolve(res);
+					} else {
+						reject(new Error('Failed to request OTP code'));
+					}
+				})
+				.catch((error: any) => {
+					reject(error);
+				});
+		});
+	}
+
+
 
 	signingWithCredential(credential: Credential): Promise<any> {
 		return new Promise((resolve, reject) => {
@@ -97,7 +133,7 @@ export class AuthenServices implements AuthenService {
 						resolve(data);
 					}
 				})
-				.catch((error: any) => {});
+				.catch((error: any) => { });
 		});
 	}
 

@@ -11,9 +11,6 @@ import {
   authActions,
   AuthSelectors,
 } from "@/core/adapters/app-redux/slices/authSlice";
-import { navigate } from "@/navigators/navigation/NavigationService";
-import { AUTHENTICATE_ROUTE } from "@/navigators/navigation/config/routes";
-import { checkValidateEmail } from "@/core/adapters/app-redux/sagas/authSaga";
 
 function VerifyAccountScreen() {
   const { components, layout, gutters, fonts } = useTheme();
@@ -21,12 +18,13 @@ function VerifyAccountScreen() {
   const dispatch = useDispatch();
   const errorEmail = useSelector(AuthSelectors.getErrorEmail);
   const email = useSelector(AuthSelectors.getEmail);
+  const isProcessing = useSelector(AuthSelectors.isProcessing);
 
   const handleEmailChange = (email: string) => {
     dispatch(authActions.validateEmailRequest({ email }));
   };
 
-  const navigateToOTP = () => {
+  const onSubmitEmail = () => {
     dispatch(authActions.submitEmail(email));
   };
 
@@ -57,7 +55,11 @@ function VerifyAccountScreen() {
           </View>
 
           <View style={[layout.row, layout.justifyBetween]}>
-            <Button title={t("button.sendOtp")} onPress={navigateToOTP} />
+            <Button
+              title={t("button.sendOtp")}
+              onPress={onSubmitEmail}
+              loading={isProcessing}
+            />
           </View>
         </Container>
       </KeyboardAvoidingView>

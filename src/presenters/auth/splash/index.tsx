@@ -17,5 +17,3 @@ function SplashScreen() {
 }
 
 export default SplashScreen;
-
-const styles = StyleSheet.create({});

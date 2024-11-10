@@ -9,6 +9,8 @@ export interface AuthenService {
 	signUpWithCredential(credential: Credential): Promise<any>;
 	registerDevice(deviceInfo: Object): Promise<string>;
 	logout(refreshToken: string): Promise<void>;
+	requestOTPCode(email: string): Promise<string>;
+	submitOTPCode(email: string, code: string): Promise<any>;
 }
 
 export class AuthenInteractor {
@@ -40,6 +42,23 @@ export class AuthenInteractor {
 			deviceToken,
 			osVersion,
 		};
+	}
+
+	async submitOTP(email: string, code: string): Promise<any> {
+		try {
+			const res = await this.authServices.submitOTPCode(email, code);
+			return res;
+		} catch (ex) {
+			throw ex;
+		}
+	}
+	async requestOTPCode(email: string): Promise<string> {
+		try {
+			const res = await this.authServices.requestOTPCode(email);
+			return res;
+		} catch (ex) {
+			throw ex;
+		}
 	}
 
 	async signIn(credential: Credential): Promise<any> {

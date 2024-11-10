@@ -114,30 +114,51 @@ const validateEmailFailure: Reducer<PayloadAction<{ error: string }>> = (state, 
 	state.errorEmail = payload.error;
 };
 
-const submitEmail: Reducer<PayloadAction<{ error: string }>> = () => {
-
+const submitEmail: Reducer = (state) => {
+	state.isProcessing = true;
 };
 
-const submitOTPCode: Reducer<PayloadAction<{ error: string }>> = () => {
-
+const submitOTPCode: Reducer = (state) => {
+	state.isProcessing = true;
 };
-
-const submitOTPRequest: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
+const validateOTPRequest: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
 	state.otp = payload.otp;
 	state.isProcessing = true;
 };
 
-const submitOTPFailure: Reducer<PayloadAction<{ error: string }>> = (state, { payload }) => {
-	state.isProcessing = false;
-	state.otpError = payload.error;
-};
-
-const submitOTPSuccess: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
+const validateOTPSuccess: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
 	state.isProcessing = false;
 	state.errors = null;
 	state.otp = payload.otp;
 	state.otpError = null;
 };
+
+const validateOTPFailure: Reducer<PayloadAction<{ error: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+	state.otpError = payload.error;
+};
+
+const requestOTPRequest: Reducer<PayloadAction<{ email: string }>> = (state, { payload }) => {
+	state.isProcessing = true;
+	state.email = payload.email;
+	state.errorEmail = null;
+};
+
+const requestOTPSuccess: Reducer<PayloadAction<{ otp: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+	state.otpError = null;
+	state.otp = payload.otp;
+};
+
+const requestOTPFailure: Reducer<PayloadAction<{ error: string }>> = (state, { payload }) => {
+	state.isProcessing = false;
+};
+
+const resetState: Reducer = (state) => {
+	Object.assign(state, initialState);
+};
+
+
 
 const authSlice = createSlice({
 	name: 'auth',
@@ -155,11 +176,15 @@ const authSlice = createSlice({
 		validateEmailRequest,
 		validateEmailSuccess,
 		validateEmailFailure,
+		validateOTPRequest,
+		validateOTPSuccess,
+		validateOTPFailure,
 		submitEmail,
 		submitOTPCode,
-		submitOTPRequest,
-		submitOTPSuccess,
-		submitOTPFailure
+		requestOTPRequest,
+		requestOTPSuccess,
+		requestOTPFailure,
+		resetState
 	},
 });
 
@@ -181,5 +206,6 @@ export const AuthSelectors = {
 	havePincode: createSelector(AuthSelector, auth => auth.havePincode),
 	getErrorEmail: createSelector(AuthSelector, auth => auth.errorEmail),
 	getEmail: createSelector(AuthSelector, auth => auth.email),
-	getOTP: createSelector(AuthSelector, auth => auth.OTP)
+	getOTP: createSelector(AuthSelector, auth => auth.otp),
+	getOTPError: createSelector(AuthSelector, auth => auth.otpError),
 };

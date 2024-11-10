@@ -11,22 +11,19 @@ import {
   authActions,
   AuthSelectors,
 } from "@/core/adapters/app-redux/slices/authSlice";
+import { useAuthState } from "@/core/adapters/app-redux/hooks/useAuthState";
 
 function ActivationAccountScreen() {
   const { components, layout, gutters, fonts } = useTheme();
   const { t } = useTranslation("auth");
-  const dispatch = useDispatch();
-  const errorEmail = useSelector(AuthSelectors.getErrorEmail);
-  const email = useSelector(AuthSelectors.getEmail);
-
-  const handleEmailChange = (email: string) => {
-    dispatch(authActions.validateEmailRequest({ email }));
-  };
-
-  const navigateToOTP = () => {
-    dispatch(authActions.submitEmail(email));
-  };
-
+  const {
+    errorOTP,
+    isProcessing,
+    onBackPress,
+    navigateToOTP,
+    onSubmitOTP,
+    handleOTPChange,
+  } = useAuthState();
   return (
     <SafeScreen>
       <KeyboardAvoidingView
@@ -34,6 +31,7 @@ function ActivationAccountScreen() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Container
+          onBackPress={onBackPress}
           allowBack
           containerStyle={[layout.justifyBetween, layout.itemsCenter]}
         >
@@ -47,15 +45,19 @@ function ActivationAccountScreen() {
               label={t("label.otp")}
               customPlaceHolder={t("placeholder.OTP")}
               disabled={false}
-              onChangeText={handleEmailChange}
-              errorMessage={errorEmail}
+              onChangeText={handleOTPChange}
+              errorMessage={errorOTP}
               keyboardType="number-pad"
               maxLength={6}
             />
           </View>
 
           <View style={[layout.row, layout.justifyBetween]}>
-            <Button title={t("header.confirm")} onPress={navigateToOTP} />
+            <Button
+              title={t("header.confirm")}
+              onPress={onSubmitOTP}
+              loading={isProcessing}
+            />
           </View>
         </Container>
       </KeyboardAvoidingView>

@@ -18,6 +18,30 @@ export class AuthApiService {
 		return instance;
 	}
 
+	async submitOTP(email: string, code: string) {
+		try {
+			const res = await this.request.post('auth/confirm-otp-email', {
+				email, code
+			});
+			console.log(res)
+			return res;
+		} catch (ex) {
+			console.log('error');
+		}
+	}
+
+	async requestOTP(email: string) {
+		try {
+			const res = await this.request.post('auth/send-otp-email', {
+				email
+			});
+			console.log(res)
+			return res;
+		} catch (ex) {
+			console.log('error');
+		}
+	}
+
 	async signIn(credential: Credential) {
 		try {
 			const res = await this.request.post('auth/login', {

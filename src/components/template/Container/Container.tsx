@@ -8,14 +8,23 @@ import { goBack, navigate } from "@/navigators/navigation/NavigationService";
 type ContainerProps = PropsWithChildren & {
   containerStyle?: StyleProp<ViewStyle>;
   allowBack?: boolean;
+  onBackPress?: () => void;
 };
 
 function Container({
   children,
   containerStyle,
   allowBack = false,
+  onBackPress,
 }: ContainerProps) {
   const { layout, navigationTheme } = useTheme();
+
+  const handleBackPress = () => {
+    if (onBackPress) {
+      onBackPress();
+    }
+    goBack();
+  };
 
   return (
     <View
@@ -29,7 +38,7 @@ function Container({
       ]}
     >
       {allowBack && (
-        <TouchableOpacity onPress={goBack}>
+        <TouchableOpacity onPress={handleBackPress}>
           <BackIcon />
         </TouchableOpacity>
       )}
